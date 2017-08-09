@@ -1,3 +1,29 @@
-﻿  FreeRunningMode.cpp
-  VirtualKeyboard.vcxproj -> c:\users\pr6\documents\visual studio 2017\Projects\VirtualKeyboard\Debug\VirtualKeyboard.exe
-  VirtualKeyboard.vcxproj -> c:\users\pr6\documents\visual studio 2017\Projects\VirtualKeyboard\Debug\VirtualKeyboard.pdb (Partial PDB)
+﻿  VirtualKeyboard.cpp
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2039: "singal2": nie jest elementem członkowskim "boost"
+  c:\program files\boost\boost_1_64_0\boost\signals2\shared_connection_block.hpp(18): note: zobacz deklarację „boost”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2143: błąd składniowy: brakuje „;” przed „<”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
+  Mouse.cpp
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2039: "singal2": nie jest elementem członkowskim "boost"
+  c:\program files\boost\boost_1_64_0\boost\signals2\shared_connection_block.hpp(18): note: zobacz deklarację „boost”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2143: błąd składniowy: brakuje „;” przed „<”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
+  Generowanie kodu...
+  Trwa kompilowanie...
+  FreeRunningMode.cpp
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2039: "singal2": nie jest elementem członkowskim "boost"
+  c:\program files\boost\boost_1_64_0\boost\signals2\shared_connection_block.hpp(18): note: zobacz deklarację „boost”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2143: błąd składniowy: brakuje „;” przed „<”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
+  Generowanie kodu...
+  Trwa kompilowanie...
+  Keyboard.cpp
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2039: "singal2": nie jest elementem członkowskim "boost"
+  c:\program files\boost\boost_1_64_0\boost\signals2\shared_connection_block.hpp(18): note: zobacz deklarację „boost”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2143: błąd składniowy: brakuje „;” przed „<”
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+c:\users\pr6\documents\visual studio 2017\projects\virtualkeyboard\virtualkeyboard\keyboard.h(10): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
+  Generowanie kodu...

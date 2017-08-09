@@ -1,16 +1,21 @@
 #pragma once
-#include <cstdint>
+#include <stdint.h>
+#include <array>
+#include <boost\signals2.hpp>
+#define MAX_KEYS 6
+typedef uint32_t keyType;
 class Keyboard
 {
 public:
-
+	boost::singal2<void(keyType)> sgn;
 	Keyboard();
-	void push(uint8_t key);
-	void release(uint8_t key);
+	void push(keyType key);
+	void release(keyType key);
 	void releaseAll();
+	std::array<keyType, MAX_KEYS> getKeys();
 	~Keyboard();
 private:
-	static const uint8_t id = 1;
-
+	const keyType id = 1;
+	std::array<keyType,MAX_KEYS> keys;
 };
 

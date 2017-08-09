@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "boost/program_options.hpp" 
 #include "IRunMode.h"
+#include "Keyboard.h"
 #include <string>
 #include <iostream>
 
