@@ -1,1 +1,3 @@
-﻿LINK : fatal error LNK1104: nie można otworzyć pliku „libboost_program_options-vc141-mt-gd-1_64.lib”
+﻿  FreeRunningMode.cpp
+  VirtualKeyboard.vcxproj -> c:\users\pr6\documents\visual studio 2017\Projects\VirtualKeyboard\Debug\VirtualKeyboard.exe
+  VirtualKeyboard.vcxproj -> c:\users\pr6\documents\visual studio 2017\Projects\VirtualKeyboard\Debug\VirtualKeyboard.pdb (Partial PDB)
