@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "Mouse.h"
 
-
+#define LPM 1
+#define PPM	2
+#define SPM	4
 boost::signals2::connection Mouse::connect(signal_t::slot_type & subscribent)
 {
 	return reportChanged.connect(subscribent);
@@ -10,33 +12,22 @@ boost::signals2::connection Mouse::connect(signal_t::slot_type & subscribent)
 void Mouse::push(keyType key)
 {
 	key = key >> 16;
-	if (key = 0x0002)
-	{
-		state.ppm = 1;
-	}
-	else if (key = 0x001)
-	{
-		state.lpm = 1;
-	}
+		report.buttons |= key;
+
+		report.buttons |= key;
 }
 
 void Mouse::release(keyType key)
 {
 	key = key >> 16;
-	if (key = 0x0002) {
-		state.ppm = 0;
-	}
-	else if (key = 0x001) {
-		state.lpm = 0;
-	}
+		report.buttons &= ~(key);
+		report.buttons &= ~(key);
 
 }
 
 void Mouse::releaseAll()
 {
-	state.lpm = 0;
-	state.ppm = 0;
-	mouse.releaseAll();
+	report.buttons = 0;
 }
 
 void Mouse::updatePosition(int x, int y)
@@ -50,6 +41,5 @@ void Mouse::updatePosition(int x, int y)
 
 void Mouse::updateWheel(int distance)
 {
-	state.Wheel = distance;
-	mouse.updateWheel(distance);
+	report.Wheel = distance;
 }

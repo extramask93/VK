@@ -15,6 +15,7 @@ public:
 	virtual void updateWheel(int distance) override;
 private:
 	MouseState state;
+	MouseReport report;
 	signal_t reportChanged;
 	IMouse &mouse;
 	// Odziedziczono za poœrednictwem elementu IMouse
