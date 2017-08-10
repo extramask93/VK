@@ -51,6 +51,12 @@
     <ClInclude Include="HIDKeyboard.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="IMouse.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="HIDMouse.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -81,6 +87,12 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="HIDKeyboard.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="IMouse.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="HIDMouse.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,6 +6,7 @@
 #include "IRunMode.h"
 #include "FreeRunningMode.h"
 #include "Keyboard.h"
+#include "HIDMouse.h"
 #include "HIDKeyboard.h"
 #include "KeyboardTranslator.h"
 #include <string>
@@ -18,6 +19,8 @@ IRunMode *runmode;
 HIDKeyboard hidkbd;
 KeyboardTranslator tr;
 Keyboard keyboard{ tr,hidkbd };
+HIDMouse hidMouse;
+Mouse mouse{hidMouse};
 void printer(const Report &rep)
 {
 	printf("%i %02x [%02x %02x %02x %02x %02x %02x]\n", rep.id, rep.modifiers, rep.keys[0], rep.keys[1], rep.keys[2], rep.keys[3], rep.keys[4], rep.keys[5]);

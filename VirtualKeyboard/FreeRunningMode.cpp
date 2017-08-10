@@ -13,7 +13,7 @@ void FreeRunningMode::Run()
 	HHOOK hhkLowLevelKybd;
 	HHOOK hhkLowLevelMouse;
 	hhkLowLevelKybd = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, 0, 0);
-	//hhkLowLevelMouse = SetWindowsHookEx(WH_MOUSE_LL, LowLevelMouseProc, 0, 0);
+	hhkLowLevelMouse = SetWindowsHookEx(WH_MOUSE_LL, LowLevelMouseProc, 0, 0);
 	// Keep this app running until we're told to stop
 	MSG msg;
 	while (!GetMessage(&msg, NULL, NULL, NULL)) {//this while loop keeps the hook
@@ -21,12 +21,12 @@ void FreeRunningMode::Run()
 		DispatchMessage(&msg);
 	}
 	UnhookWindowsHookEx(hhkLowLevelKybd);
-	//UnhookWindowsHookEx(hhkLowLevelKybd);
+	UnhookWindowsHookEx(hhkLowLevelKybd);
 	keyboard.releaseAll();
 }
 
 
-/*LRESULT CALLBACK LowLevelMouseProc(int nCode,WPARAM wParam,LPARAM lParam)
+LRESULT CALLBACK LowLevelMouseProc(int nCode,WPARAM wParam,LPARAM lParam)
 {
 	MSLLHOOKSTRUCT* p = (MSLLHOOKSTRUCT*)lParam;
 
@@ -35,12 +35,12 @@ void FreeRunningMode::Run()
 	if (wParam == WM_RBUTTONDOWN || wParam == WM_LBUTTONDOWN)
 		mouse.release(p->mouseData);
 	if (wParam == WM_MOUSEWHEEL)
-		mouse.updateWheel(p->mouseData>>16);
+		mouse.updateWheel(p->mouseData);
 	if (wParam == WM_MOUSEMOVE)
 		mouse.updatePosition(p->pt.x,p->pt.y);
 
 	return 1;
-}*/
+}
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	BOOL fEatKeystroke = FALSE;

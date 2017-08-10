@@ -4,6 +4,7 @@
 
 HIDKeyboard::HIDKeyboard()
 {
+	report.id = 1;
 }
 bool HIDKeyboard::isModifier(keyType key)
 {
