@@ -4,18 +4,24 @@
 #include "stdafx.h"
 #include "boost/program_options.hpp" 
 #include "IRunMode.h"
+#include "FreeRunningMode.h"
 #include "Keyboard.h"
+#include "HIDKeyboard.h"
+#include "KeyboardTranslator.h"
 #include <string>
 #include <iostream>
 
 
 namespace po = boost::program_options;
 using namespace std;
-
+IRunMode *runmode;
+HIDKeyboard hidkbd;
+KeyboardTranslator tr;
+Keyboard keyboard{ tr,hidkbd };
 
 int main(int argc,char *argv[])
 {
-	IRunMode *runmode;
+
 	po::options_description desc("Allowed options");
 	desc.add_options()
 		("help,h", "produce help message")
@@ -41,10 +47,12 @@ int main(int argc,char *argv[])
 		//run play mode and save (should add logger to an run object)
 		return 0;
 	}
-	else
+	else {
 		cout << "Script file not specified. Running record mode";
+		runmode = new FreeRunningMode{};
+	}
 	runmode->Run();
-
+	delete runmode;
     return 0;
 }
 
