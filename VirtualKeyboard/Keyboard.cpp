@@ -26,7 +26,7 @@ void Keyboard::release(keyType key)
 	{
 		if (k == key) {
 			k = 0x00;
-			keyboard.release(translator.translate(k));
+			keyboard.release(translator.translate(key));
 		}
 	}
 }
@@ -42,10 +42,6 @@ std::array<keyType, MAX_KEYS> Keyboard::getKeys()
 	return keys;
 }
 
-/*auto Keyboard::connect(const signal_t::slot_type & subscriber)
-{
-	return keyChanged.connect(subscriber);
-}*/
 
 Keyboard::~Keyboard()
 {

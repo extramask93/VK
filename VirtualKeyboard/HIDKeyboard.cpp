@@ -17,6 +17,7 @@ void HIDKeyboard::push(keyType key)
 	if (isModifier(key))
 	{
 		report.modifiers |= (1 << (key - 128));
+		reportChanged(report);
 		return;
 	}
 		for (auto &k : report.keys)
@@ -30,6 +31,7 @@ void HIDKeyboard::push(keyType key)
 		if (k == 0x00)
 		{
 			k = key;
+			reportChanged(report);
 			break;
 		}
 	}
@@ -41,12 +43,17 @@ void HIDKeyboard::release(keyType key)
 	if (isModifier(key))
 	{
 		report.modifiers &= ~(1 << (key - 128));
+		reportChanged(report);
 		return;
 	}
 	for (auto &k : report.keys)
 	{
 		if (key == k)
-			k=0x00;
+		{
+			k = 0x00;
+			reportChanged(report);
+			break;
+		}
 	}
 }
 
@@ -57,6 +64,11 @@ void HIDKeyboard::releaseAll()
 	{
 		k = 0;
 	}
+	reportChanged(report);
+}
+boost::signals2::connection HIDKeyboard::connect(const signal_t::slot_type & subscriber)
+{
+	return reportChanged.connect(subscriber);
 }
 
 

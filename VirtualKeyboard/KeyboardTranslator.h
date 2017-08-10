@@ -11,9 +11,6 @@ class KeyboardTranslator :public ITranslator
 public:
 	KeyboardTranslator();
 	virtual keyType translate(keyType key) override;
-	/*bool isModifier(keyType key);
-	bool isASCII(keyType key);
-	bool isFunctional(keyType key);*/
 	uint8_t mapModifier(keyType key);
 	~KeyboardTranslator();
 private:

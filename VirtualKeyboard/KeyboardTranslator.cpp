@@ -20,36 +20,6 @@ keyType KeyboardTranslator::translate(keyType key)
 		}
 		return retval;
 }
-/*
-bool KeyboardTranslator::isModifier(keyType key)
-{
-	if ((key >= 0x10 && key <= 0x12) || key == 0x14 || key == 0x5B || key == 0x5C)
-		return true;
-	else
-		return false;
-}
-
-bool KeyboardTranslator::isASCII(keyType key)
-{
-	if (key >= 0x30 && key <= 0x5A)
-		return true;
-	else
-		return false;
-}
-
-bool KeyboardTranslator::isFunctional(keyType key)
-{
-	if (key >= 0x70 && key <= 0x7B) //f1-f12
-		return true;
-	if (key >= 0x60 && key <= 0x6F) //numpad
-		return true;
-	if (key == 0x08 || key <= 0x20 || key == 0x09 || key == 0x0D || key == 0x13 || key == 0x1B)
-		return true;
-	if (key >= 0x20 && key <= 0x2F)
-		return true;
-	return false;
-}*/
-
 
 
 KeyboardTranslator::~KeyboardTranslator()
@@ -58,13 +28,27 @@ KeyboardTranslator::~KeyboardTranslator()
 
 void KeyboardTranslator::fillModMap()
 {
-	modifierMap[(keyType)0x10] = (uint8_t)0x81;//shift
-	modifierMap[0x11] = 0x80;//ctrl
-	modifierMap[0x12] = 0x82;//alt
-	modifierMap[0x5B] = 0x83;//gui
-	modifierMap[0x5B] = 0x83;//gui
+	modifierMap[0xA2] = 0x80;//lctrl
+	modifierMap[0xA0] = 0x81;//lshift
+	modifierMap[0xA4] = 0x82;//lalt
+	modifierMap[0xA3] = 0x84;//rctrl
+	modifierMap[0xA1] = 0x85;//rshift
+	modifierMap[0xA5] = 0x86;//lalt
+	modifierMap[0x5B] = 0x83;//lwin
+	modifierMap[0x5C] = 0x87;//rwin
+
+
 
 	/*
+	#define KEY_LEFT_CTRL   0x80
+	#define KEY_LEFT_SHIFT    0x81
+	#define KEY_LEFT_ALT    0x82
+	#define KEY_LEFT_GUI    0x83
+	#define KEY_RIGHT_CTRL    0x84
+	#define KEY_RIGHT_SHIFT   0x85
+	#define KEY_RIGHT_ALT   0x86
+	#define KEY_RIGHT_GUI   0x87
+	///
 	#define KEY_F1        0xC2
 	#define KEY_F2        0xC3
 	#define KEY_F3        0xC4
@@ -94,6 +78,15 @@ void KeyboardTranslator::fillModMap()
 	modifierMap[0x27] = 0xD7;
 	modifierMap[0x28] = 0xD9;
 	
+	modifierMap[0x21] = 0xD3;//pup
+	modifierMap[0x22] = 0xD6;//pdw
+	modifierMap[0x23] = 0xD5;//end
+	modifierMap[0x24] = 0xD2;//home
+	modifierMap[0x2D] = 0xD1;//insert
+	modifierMap[0x2E] = 0xD4;//delete
+	modifierMap[0x14] = 0xC1;//caps
+	modifierMap[0x1B] = 0xB1;//esc
+
 
 	//numbers
 	for (unsigned int i = 0x30; i <= 0x39; ++i)

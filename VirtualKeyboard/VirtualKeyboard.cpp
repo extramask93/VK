@@ -18,10 +18,13 @@ IRunMode *runmode;
 HIDKeyboard hidkbd;
 KeyboardTranslator tr;
 Keyboard keyboard{ tr,hidkbd };
-
+void printer(const Report &rep)
+{
+	printf("%i %02x [%02x %02x %02x %02x %02x %02x]\n", rep.id, rep.modifiers, rep.keys[0], rep.keys[1], rep.keys[2], rep.keys[3], rep.keys[4], rep.keys[5]);
+}
 int main(int argc,char *argv[])
 {
-
+	hidkbd.connect(printer);
 	po::options_description desc("Allowed options");
 	desc.add_options()
 		("help,h", "produce help message")
@@ -48,7 +51,7 @@ int main(int argc,char *argv[])
 		return 0;
 	}
 	else {
-		cout << "Script file not specified. Running record mode";
+		cout << "Script file not specified. Running record mode\n";
 		runmode = new FreeRunningMode{};
 	}
 	runmode->Run();
