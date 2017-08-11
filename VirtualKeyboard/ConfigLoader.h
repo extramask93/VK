@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <map>
 using namespace std;
 #define FILE_NAME "config.txt"
 struct Config
@@ -12,12 +13,10 @@ struct Config
 class ConfigLoader
 {
 public:
-	ConfigLoader(std::string const &name);
-	Config load();
+	ConfigLoader();
+	void load(std::string const &name);
 	~ConfigLoader(void);
-private:
-	std::string fileName;
-	Config config;
+	std::map<string, string> options;
 
 
 };

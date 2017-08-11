@@ -9,6 +9,7 @@
 #include "HIDMouse.h"
 #include "HIDKeyboard.h"
 #include "BlockingQueue.h"
+#include "ConfigLoader.h"
 #include "TCPThread.h"
 #include "KeyboardTranslator.h"
 #include <string>
@@ -24,7 +25,6 @@ Keyboard keyboard{ tr,hidkbd };
 HIDMouse hidMouse;
 Mouse mouse{hidMouse};
 BlockingQueue<std::shared_ptr<IMessage>> bque{ 50 };
-TCPThread sendThread{ "localhost","21",bque };
 
 void printer(const Report &rep)
 {
@@ -36,26 +36,53 @@ void mousePrinter(const MouseReport &rep)
 {
 	printf("id: %i buttons: %i X: %i Y: %i Wheel: %i\n",rep.id,rep.buttons,rep.X,rep.Y,rep.Wheel);
 }
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
+	ConfigLoader cfg;
+	cfg.load( "config.txt" );
 	hidkbd.connect(printer);
 	mouse.connect(mousePrinter);
 	po::options_description desc("Allowed options");
 	desc.add_options()
-		("help,h", "produce help message")
+		("help,h", "produce help message")//done
 		("macro file,i", po::value<std::string>(), "run given script")
-		("record a macro,r", po::value<std::string>(),"record while in play mode")
+		("record,r", po::value<std::string>(), "record")
+		("keyboard,k", "hook keyboard")//done
+		("mouse,m", "hook mouse")//done
+		("dual,d", "run in dual mode")//done
+		("config", po::value<std::string>(), "specifies the config file")//done
 		;
 	po::variables_map vm;
 	po::store(po::parse_command_line(argc, argv, desc), vm);
 	po::notify(vm);
-
+	runmode->keyhookproc = &LowLevelProcNoOp;
+	runmode->mousehookproc = &LowLevelProcNoOp;
+	if (vm.count("config"))
+	{
+		cfg.load(vm["config"].as<std::string>());
+	}
 	if (vm.count("help")) {
 		cout << desc << "\n";
 		return 1;
 	}
-
-	else if (vm.count("macro file")) {
+	if (vm.count("dual"))
+	{
+		if (vm.count("mouse"))
+			runmode->mousehookproc = &LowLevelMouseProcDual;
+		if (vm.count("keyboard"))
+			runmode->keyhookproc = &LowLevelKeyboardProcDual;
+	}
+	else {
+		if (vm.count("mouse"))
+		{
+			runmode->mousehookproc = &LowLevelMouseProc;
+		}
+		if (vm.count("keyboard"))
+		{
+			runmode->mousehookproc = &LowLevelMouseProc;
+		}
+	}
+	if (vm.count("macro file")) {
 		//run script 
 		return 0;
 	}
@@ -65,11 +92,17 @@ int main(int argc,char *argv[])
 		//run play mode and save (should add logger to an run object)
 		return 0;
 	}
-	else {
-		cout << "Script file not specified. Running record mode\n";
-		runmode = new FreeRunningMode{};
+	cout << "Script file not specified. Running record mode\n";
+	runmode = new FreeRunningMode{};
+	TCPThread sendThread{ cfg.options["IP"],cfg.options["PORT"],bque };
+	try {
+		boost::thread{ sendThread };
 	}
-	boost::thread{ sendThread };
+	catch (std::exception const &ex)
+	{
+		std::cerr << ex.what();
+		exit(1);
+	}
 	runmode->Run();
 	delete runmode;
     return 0;

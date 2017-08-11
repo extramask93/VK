@@ -2,16 +2,21 @@
 #include "ConfigLoader.h"
 
 
-ConfigLoader::ConfigLoader(std::string const &name) :fileName{ name } {
+ConfigLoader::ConfigLoader() {
 }
-Config ConfigLoader::load()
+void ConfigLoader::load(std::string const &name)
 {
+	options.clear();
 	fstream configStream;
-	configStream.open(fileName, ios_base::in);
-	configStream >> config.ip >> config.ip;
-	configStream >> config.port >> config.port;
+	configStream.open(name, ios_base::in);
+	while (!configStream.eof())
+	{
+		std::string key;
+		std::string val;
+		configStream >> key >> val;
+		options[key] = val;
+	}
 	configStream.close();
-	return config;
 }
 ConfigLoader::~ConfigLoader()
 {

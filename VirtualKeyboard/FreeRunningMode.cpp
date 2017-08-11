@@ -26,8 +26,55 @@ void FreeRunningMode::Run()
 	//UnhookWindowsHookEx(hhkLowLevelMouse);
 	keyboard.releaseAll();
 }
+LRESULT CALLBACK LowLevelProcNoOp(int nCode, WPARAM wParam, LPARAM lParam)
+{
+	return 0;
+}
+LRESULT CALLBACK LowLevelMouseProcDual(int nCode, WPARAM wParam, LPARAM lParam)
+{
+	MSLLHOOKSTRUCT* p = (MSLLHOOKSTRUCT*)lParam;
 
-
+	if (wParam == WM_RBUTTONUP)
+		mouse.release(Mouse::MouseButtons::PPM);
+	if (wParam == WM_LBUTTONUP)
+		mouse.release(Mouse::MouseButtons::LPM);
+	if (wParam == WM_RBUTTONDOWN)
+		mouse.push(Mouse::MouseButtons::PPM);
+	if (wParam == WM_LBUTTONDOWN)
+		mouse.push(Mouse::MouseButtons::LPM);
+	if (wParam == WM_MOUSEWHEEL) {
+		mouse.updateWheel(p->mouseData);
+	}
+	if (wParam == WM_MOUSEMOVE) {
+		mouse.updatePosition(p->pt.x, p->pt.y);
+	}
+	return 0;
+}
+LRESULT CALLBACK LowLevelKeyboardProcDual(int nCode, WPARAM wParam, LPARAM lParam)
+{
+	BOOL fEatKeystroke = FALSE;
+	PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
+	if (nCode == HC_ACTION)
+	{
+		if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)
+		{
+			if (p->vkCode == VK_F12) {
+				PostQuitMessage(0);
+			}
+			else
+				keyboard.push(p->vkCode);
+		}
+		if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)
+		{
+			if (p->vkCode == VK_F12) {
+				PostQuitMessage(0);
+			}
+			else
+				keyboard.release(p->vkCode);
+		}
+	}
+	return 0;
+}
 LRESULT CALLBACK LowLevelMouseProc(int nCode,WPARAM wParam,LPARAM lParam)
 {
 	MSLLHOOKSTRUCT* p = (MSLLHOOKSTRUCT*)lParam;
