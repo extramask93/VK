@@ -9,11 +9,10 @@ FreeRunningMode::FreeRunningMode()
 
 void FreeRunningMode::Run()
 {
-	printf("Keyboard hook is running");
 	HHOOK hhkLowLevelKybd;
 	HHOOK hhkLowLevelMouse;
-	hhkLowLevelKybd = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, 0, 0);
-	//hhkLowLevelMouse = SetWindowsHookEx(WH_MOUSE_LL, LowLevelMouseProc, 0, 0);
+	hhkLowLevelKybd = SetWindowsHookEx(WH_KEYBOARD_LL, keyhookproc, 0, 0);
+	hhkLowLevelMouse = SetWindowsHookEx(WH_MOUSE_LL, mousehookproc, 0, 0);
 	// Keep this app running until we're told to stop
 	MSG msg;
 	while (!GetMessage(&msg, NULL, NULL, NULL)) {//this while loop keeps the hook
@@ -23,7 +22,7 @@ void FreeRunningMode::Run()
 		DispatchMessage(&msg);
 	}
 	UnhookWindowsHookEx(hhkLowLevelKybd);
-	//UnhookWindowsHookEx(hhkLowLevelMouse);
+	UnhookWindowsHookEx(hhkLowLevelMouse);
 	keyboard.releaseAll();
 }
 LRESULT CALLBACK LowLevelProcNoOp(int nCode, WPARAM wParam, LPARAM lParam)

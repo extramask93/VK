@@ -39,7 +39,7 @@ void mousePrinter(const MouseReport &rep)
 int main(int argc, char *argv[])
 {
 	ConfigLoader cfg;
-	cfg.load( "config.txt" );
+	cfg.load( "config.txt");
 	hidkbd.connect(printer);
 	mouse.connect(mousePrinter);
 	po::options_description desc("Allowed options");
@@ -55,8 +55,9 @@ int main(int argc, char *argv[])
 	po::variables_map vm;
 	po::store(po::parse_command_line(argc, argv, desc), vm);
 	po::notify(vm);
-	runmode->keyhookproc = &LowLevelProcNoOp;
-	runmode->mousehookproc = &LowLevelProcNoOp;
+	runmode = new FreeRunningMode{};
+	runmode->keyhookproc = LowLevelProcNoOp;
+	runmode->mousehookproc = LowLevelProcNoOp;
 	if (vm.count("config"))
 	{
 		cfg.load(vm["config"].as<std::string>());
@@ -92,9 +93,10 @@ int main(int argc, char *argv[])
 		//run play mode and save (should add logger to an run object)
 		return 0;
 	}
-	cout << "Script file not specified. Running record mode\n";
-	runmode = new FreeRunningMode{};
+	cout << "Script file not specified. Running record mode"<<std::endl;
 	TCPThread sendThread{ cfg.options["IP"],cfg.options["PORT"],bque };
+	runmode->keyhookproc = LowLevelKeyboardProcDual;
+	runmode->mousehookproc = LowLevelMouseProcDual;
 	try {
 		boost::thread{ sendThread };
 	}

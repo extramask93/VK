@@ -9,6 +9,9 @@ void ConfigLoader::load(std::string const &name)
 	options.clear();
 	fstream configStream;
 	configStream.open(name, ios_base::in);
+	if (configStream.bad()) {
+		return;
+	}
 	while (!configStream.eof())
 	{
 		std::string key;

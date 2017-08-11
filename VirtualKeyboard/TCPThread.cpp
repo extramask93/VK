@@ -18,12 +18,13 @@ void TCPThread::operator()()
 	boost::asio::io_service io_service;
 	//resolving the name
 	try {
+		std::cout << "Connecting to: " << ip << ": "<<port<<std::endl;
 		tcp::resolver resolver(io_service);
 		tcp::resolver::query query(tcp::v4(), ip, port);
 		tcp::resolver::iterator iterator = resolver.resolve(query);
 		tcp::socket s = tcp::socket(io_service);
 		boost::asio::connect(s, iterator);
-
+		std::cout << "Connected" << std::endl;
 		while (1)
 		{
 			std::shared_ptr<IMessage> reportToSend = keyQueue.pop();

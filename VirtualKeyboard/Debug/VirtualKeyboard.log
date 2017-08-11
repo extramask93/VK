@@ -1,4 +1,4 @@
-﻿  VirtualKeyboard.cpp
+﻿  FreeRunningMode.cpp
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\memory(53): warning C4996: 'std::uninitialized_copy::_Unchecked_iterators::_Deprecate': Call to 'std::uninitialized_copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\memory(53): note: zobacz deklarację „std::uninitialized_copy::_Unchecked_iterators::_Deprecate”
   c:\program files\boost\boost_1_64_0\boost\signals2\detail\auto_buffer.hpp(191): note: zobacz odwołanie do funkcji szablon; wystąpienie „_FwdIt *std::uninitialized_copy<I,boost::shared_ptr<void>*>(_InIt,_InIt,_FwdIt)” jest kompilowane
@@ -65,7 +65,5 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
   c:\program files\boost\boost_1_64_0\boost\bind\placeholders.hpp(48): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<3>” jest kompilowane
   c:\program files\boost\boost_1_64_0\boost\bind\placeholders.hpp(47): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<2>” jest kompilowane
   c:\program files\boost\boost_1_64_0\boost\bind\placeholders.hpp(46): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<1>” jest kompilowane
-  ConfigLoader.cpp
-  Generowanie kodu...
   VirtualKeyboard.vcxproj -> C:\Users\PR6\documents\visual studio 2017\Projects\VirtualKeyboard\Debug\VirtualKeyboard.exe
   VirtualKeyboard.vcxproj -> C:\Users\PR6\documents\visual studio 2017\Projects\VirtualKeyboard\Debug\VirtualKeyboard.pdb (Partial PDB)
