@@ -8,6 +8,8 @@
 #include "Keyboard.h"
 #include "HIDMouse.h"
 #include "HIDKeyboard.h"
+#include "BlockingQueue.h"
+#include "TCPThread.h"
 #include "KeyboardTranslator.h"
 #include <string>
 #include <iostream>
@@ -21,13 +23,23 @@ KeyboardTranslator tr;
 Keyboard keyboard{ tr,hidkbd };
 HIDMouse hidMouse;
 Mouse mouse{hidMouse};
+BlockingQueue<std::shared_ptr<IMessage>> bque{ 50 };
+TCPThread sendThread{ "localhost","21",bque };
+
 void printer(const Report &rep)
 {
+	auto tp = make_shared<Report>(rep);
+	bque.push(tp);
 	printf("%i %02x [%02x %02x %02x %02x %02x %02x]\n", rep.id, rep.modifiers, rep.keys[0], rep.keys[1], rep.keys[2], rep.keys[3], rep.keys[4], rep.keys[5]);
+}
+void mousePrinter(const MouseReport &rep)
+{
+	printf("id: %i buttons: %i X: %i Y: %i Wheel: %i\n",rep.id,rep.buttons,rep.X,rep.Y,rep.Wheel);
 }
 int main(int argc,char *argv[])
 {
 	hidkbd.connect(printer);
+	mouse.connect(mousePrinter);
 	po::options_description desc("Allowed options");
 	desc.add_options()
 		("help,h", "produce help message")
@@ -57,6 +69,7 @@ int main(int argc,char *argv[])
 		cout << "Script file not specified. Running record mode\n";
 		runmode = new FreeRunningMode{};
 	}
+	boost::thread{ sendThread };
 	runmode->Run();
 	delete runmode;
     return 0;

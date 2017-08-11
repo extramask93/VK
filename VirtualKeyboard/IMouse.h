@@ -1,12 +1,24 @@
 #pragma once
 #include "IKeyboard.h"
-struct MouseReport
+#include "IMessage.h"
+#define MOUSE_WRITE_REQ 0x40
+struct MouseReport :public IMessage
 {
 	uint8_t id;
 	uint8_t buttons;
+	int prevX;
+	int prevY;
+	int currentX;
+	int currentY;
 	int8_t X;
 	int8_t Y;
 	int8_t Wheel;
+	// Odziedziczono za poœrednictwem elementu IMessage
+	virtual uint8_t getSize() override;
+	virtual std::vector<uint8_t> getFields() override;
+	virtual uint8_t getPacketId() override;
+private:
+	static const uint8_t SIZE = 6;
 };
 struct MouseState
 {

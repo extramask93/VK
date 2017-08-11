@@ -72,5 +72,20 @@ boost::signals2::connection HIDKeyboard::connect(const signal_t::slot_type & sub
 	return reportChanged.connect(subscriber);
 }
 
+uint8_t Report::getSize()
+{
 
+	return SIZE;
+}
 
+std::vector<uint8_t> Report::getFields()
+{
+	std::vector<uint8_t> vu{ getPacketId(),id,reserved,modifiers };
+	vu.insert(vu.end()-1,keys.begin(),keys.end());
+	return vu;
+}
+
+uint8_t Report::getPacketId()
+{
+	return KEYBOARD_WRITE_REQ;
+}

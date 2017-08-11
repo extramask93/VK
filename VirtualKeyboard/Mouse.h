@@ -5,9 +5,10 @@
 class Mouse:public IMouse
 {
 public:
+	enum MouseButtons {LPM=0,PPM=2};
 	typedef boost::signals2::signal<void(MouseReport)> signal_t;
-	Mouse(IMouse &mouse) :mouse{ mouse } {}
-	boost::signals2::connection connect(signal_t::slot_type & subscribent);
+	Mouse(IMouse &mouse) :mouse{ mouse } { report.id = 2; }
+	boost::signals2::connection connect(const signal_t::slot_type &subscribent);
 	virtual void push(keyType key) override;
 	virtual void release(keyType key) override;
 	virtual void releaseAll() override;
