@@ -27,6 +27,9 @@ void FreeRunningMode::Run()
 }
 LRESULT CALLBACK LowLevelProcNoOp(int nCode, WPARAM wParam, LPARAM lParam)
 {
+	auto state=GetAsyncKeyState(VK_F12);
+	if(state)
+		PostQuitMessage(0);
 	return 0;
 }
 LRESULT CALLBACK LowLevelMouseProcDual(int nCode, WPARAM wParam, LPARAM lParam)
@@ -94,6 +97,7 @@ LRESULT CALLBACK LowLevelMouseProc(int nCode,WPARAM wParam,LPARAM lParam)
 		mouse.updatePosition(p->pt.x, p->pt.y);
 		return 0;
 	}
+
 
 	return 1;
 }
