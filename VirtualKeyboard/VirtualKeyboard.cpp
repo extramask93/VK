@@ -10,6 +10,7 @@
 #include "HIDKeyboard.h"
 #include "BlockingQueue.h"
 #include "ConfigLoader.h"
+#include "Macro.h"
 #include "TCPThread.h"
 #include "KeyboardTranslator.h"
 #include <string>
@@ -39,13 +40,14 @@ void mousePrinter(const MouseReport &rep)
 int main(int argc, char *argv[])
 {
 	ConfigLoader cfg;
+	Macro *macro=new Macro{bque};
 	cfg.load( "config.txt");
 	hidkbd.connect(printer);
 	mouse.connect(mousePrinter);
 	po::options_description desc("Allowed options");
 	desc.add_options()
 		("help,h", "produce help message")//done
-		("macro file,i", po::value<std::string>(), "run given script")
+		("macro,i", po::value<std::string>(), "run given script")
 		("record,r", po::value<std::string>(), "record")
 		("keyboard,k", "hook keyboard")//done
 		("mouse,m", "hook mouse")//done
@@ -64,7 +66,7 @@ int main(int argc, char *argv[])
 	}
 	if (vm.count("help")) {
 		cout << desc << "\n";
-		return 1;
+		return 0;
 	}
 	if (vm.count("dual"))
 	{
@@ -83,30 +85,32 @@ int main(int argc, char *argv[])
 			runmode->mousehookproc = &LowLevelMouseProc;
 		}
 	}
-	if (vm.count("macro file")) {
-		//run script 
-		return 0;
+	if (vm.count("macro")) {
+		try {
+			macro->load(vm["macro"].as<std::string>());
+		}
+		catch (std::exception &ex) {
+			cerr << ex.what() << endl;
+			return 1;
+		}
+		runmode = macro;
 	}
-	else if (vm.count("racord a macro"))
+	else if (vm.count("record"))
 	{
-		cout << "recording a macro" << endl;
-		//run play mode and save (should add logger to an run object)
 		return 0;
 	}
 	cout << "Script file not specified. Running record mode"<<std::endl;
-	TCPThread sendThread{ cfg.options["IP"],cfg.options["PORT"],bque };
-	runmode->keyhookproc = LowLevelKeyboardProcDual;
-	runmode->mousehookproc = LowLevelMouseProcDual;
-	try {
-		boost::thread{ sendThread };
-	}
-	catch (std::exception const &ex)
-	{
-		std::cerr << ex.what();
-		exit(1);
-	}
-	runmode->Run();
-	delete runmode;
+	//runmode->keyhookproc = LowLevelKeyboardProcDual;
+	//runmode->mousehookproc = LowLevelMouseProcDual;
+	printf("Connecting...\n");
+		TCPThread sendThread{ cfg.options["IP"],cfg.options["PORT"],bque};
+		while (sendThread.getState() == State::none);
+		if (sendThread.getState() == State::disconnected)
+			exit(2);
+		else {
+			runmode->Run();
+		}
+	
     return 0;
 }
 

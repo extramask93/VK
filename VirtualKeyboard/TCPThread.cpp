@@ -1,55 +1,166 @@
 #include "stdafx.h"
 #include "TCPThread.h"
+#include "Message.h"
 
 
-TCPThread::TCPThread(std::string ip, std::string port, BlockingQueue<std::shared_ptr<IMessage>> &que) :keyQueue{ que }, ip{ ip }, port{ port } 
+TCPThread::TCPThread(std::string ip, std::string port, BlockingQueue<std::shared_ptr<IMessage>> &que) :keyQueue{ que }, ip{ ip }, port{ port },socket{nullptr}
 {
+	state = State::none;
+	stateMutex = std::shared_ptr<boost::mutex>{ new boost::mutex{} };
+	internalThread = boost::thread(&TCPThread::operator(), this);
 
 }
 
 void TCPThread::connect()
 {
-	printf("connected to: %s:%s",ip,port);
+	std::cout << "Connecting to: " << ip << ": " << port << std::endl;
+	tcp::resolver resolver(io_service);
+	tcp::resolver::query query(tcp::v4(), ip, port);
+	tcp::resolver::iterator iterator = resolver.resolve(query);
+	socket=std::shared_ptr<tcp::socket>(new tcp::socket(io_service));
+	boost::asio::connect(*socket, iterator);
+	std::cout<<"connected to:"<< ip<<':'<< port<<std::endl;
+	setState(State::waitingForHandshake);
+}
+
+void TCPThread::decodeMessage()
+{
+	std::shared_ptr<IMessage> reportToSend = keyQueue.pop();
+	IMessage &message = *reportToSend;
+	auto fields = message.getFields();
+	request[0] = message.getSize();
+	for (int i = 1; i <= request[0]; ++i)
+		request[i] = fields[i - 1];
+}
+
+void TCPThread::writeRequest()
+{
+	boost::asio::write(*socket, boost::asio::buffer(request, request[0] + 1));
+}
+
+void TCPThread::getResponse()
+{
+	size_t reply_length = boost::asio::read(*socket,
+		boost::asio::buffer(response, 2));
+}
+
+State TCPThread::getState()
+{
+	stateMutex->lock();
+	auto stat = state;
+	stateMutex->unlock();
+	return stat;
+}
+
+void TCPThread::setState(State state_)
+{
+	stateMutex->lock();
+	state = state_;
+	stateMutex->unlock();
 }
 
 void TCPThread::operator()()
 {
-	std::array<uint8_t, 20> request;
-	boost::asio::io_service io_service;
-	//resolving the name
 	try {
-		std::cout << "Connecting to: " << ip << ": "<<port<<std::endl;
-		tcp::resolver resolver(io_service);
-		tcp::resolver::query query(tcp::v4(), ip, port);
-		tcp::resolver::iterator iterator = resolver.resolve(query);
-		tcp::socket s = tcp::socket(io_service);
-		boost::asio::connect(s, iterator);
-		std::cout << "Connected" << std::endl;
-		while (1)
+		connect();
+		performHandshake();
+		logIn("root", "root");
+	}
+	catch(std::exception &ex){
+		std::cerr << ex.what()<<std::endl;
+		return;
+	}
+	while (getState()!=State::disconnected)
+	{
+		try {
+			decodeMessage();
+			writeRequest();
+			getResponse();
+			handleResponse(2);
+		}
+		catch (boost::thread_interrupted& interruption)
 		{
-			std::shared_ptr<IMessage> reportToSend = keyQueue.pop();
-			IMessage &message = *reportToSend;
-			auto fields = message.getFields();
-			request[0] = message.getSize();
-			for (int i = 1; i <= request[0]; ++i)
-				request[i] = fields[i - 1];
-			boost::asio::write(s, boost::asio::buffer(request, request[0] + 1));
-			char reply[3];
-			size_t reply_length = boost::asio::read(s,
-				boost::asio::buffer(reply, 3));
-			std::cout << "Reply is: ";
-			std::cout.write(reply, reply_length);
-			std::cout << "\n";
+			break;
+		}
+		catch (std::exception const &ex)
+		{
+			std::cerr << ex.what();
+			setState(State::disconnected);
+			break;
 		}
 	}
-	catch (std::exception const &ex)
-	{
-		std::cerr << ex.what();
-		exit(1);
-	}
+	closeConnection();
+
 }
 
 
 TCPThread::~TCPThread()
 {
+	setState(State::disconnected);
+	keyQueue.push(std::make_shared<Message>(Message{0x01,DISCONNECT_REQ}));
+	internalThread.join();
+}
+
+void TCPThread::handleResponse(size_t len)
+{
+	uint8_t buffer[2];
+	static int failures=0;
+	if (response[1] == DISCONNECT_REQ && getState()!=State::disconnected)
+	{
+		printf("Disconnect requested \n");
+		buffer[0] = 0x01; buffer[1] = DISCONNECT_REQ;
+		setState(State::disconnected);
+		boost::asio::write(*socket, boost::asio::buffer(buffer, 2));
+	}
+	if (response[1] == REQUEST_FAILED)
+	{
+		if(++failures > 10) throw(new std::exception("Command failed more than 10 times. Closing the connection"));
+	}
+}
+
+void TCPThread::performHandshake()
+{
+	printf("Performing handshake...\n");
+	uint8_t buffer[2] = { 0x01,PROTOCOL_VER };
+	uint8_t replyBuffer[2];
+	boost::asio::write(*socket, boost::asio::buffer(buffer, 2));
+	size_t reply_length = boost::asio::read(*socket,
+		boost::asio::buffer(replyBuffer, 2));
+	printf("Handshake response: %02x %02x\n",replyBuffer[0],replyBuffer[1]);
+	if (replyBuffer[1] == UNSUPORTED_PROTOCOL) {
+		setState(State::disconnected);
+		throw(new std::exception("Handshake failed due to unsuported protocol version"));
+	}
+	else
+		setState(State::connected);
+}
+
+void TCPThread::logIn(const std::string & username, const std::string & password)
+{
+	printf("Loggin in...\n");
+	std::string total = username + ',' + password;
+	std::vector<unsigned char> buffer;
+	buffer.push_back(total.size() + 1);
+	buffer.push_back(0x10);
+	for each (auto c in total)
+	{
+		buffer.push_back(c);
+	}
+	uint8_t replyBuffer[2];
+	boost::asio::write(*socket, boost::asio::buffer(buffer, 2));
+	size_t reply_length = boost::asio::read(*socket,
+		boost::asio::buffer(replyBuffer, 2));
+	printf("Log in response: %02x %02x\n", replyBuffer[0], replyBuffer[1]);
+	if (replyBuffer[1] != LOGIN_OK) {
+		setState(State::disconnected);
+		throw(new std::exception{ "Login failed" });
+	}
+	else
+		setState(State::logged);
+}
+
+void TCPThread::closeConnection()
+{
+	state = State::disconnected;
+	socket->close();
 }

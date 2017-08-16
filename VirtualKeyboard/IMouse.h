@@ -6,10 +6,6 @@ struct MouseReport :public IMessage
 {
 	uint8_t id;
 	uint8_t buttons;
-	int prevX;
-	int prevY;
-	int currentX;
-	int currentY;
 	int8_t X;
 	int8_t Y;
 	int8_t Wheel;

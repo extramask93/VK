@@ -1,0 +1,4 @@
+keyboardPush R
+delayMS 1000
+keyboardRelease R
+keyboardReleaseAll 0
