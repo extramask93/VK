@@ -10,13 +10,12 @@ KeyboardTranslator::KeyboardTranslator()
 keyType KeyboardTranslator::translate(keyType key)
 {
 	keyType retval;
-		try {
-			retval=modifierMap.at(key);
-			printf("clicked: %i\n", retval);
-		}
+		try {	
+			retval=modifierMap.at(key);		}
 		catch (const std::out_of_range &ex)
 		{
-			retval = 0;
+
+			retval = key;
 		}
 		return retval;
 }
@@ -28,14 +27,14 @@ KeyboardTranslator::~KeyboardTranslator()
 
 void KeyboardTranslator::fillModMap()
 {
-	modifierMap[0xA2] = 0x80;//lctrl
-	modifierMap[0xA0] = 0x81;//lshift
-	modifierMap[0xA4] = 0x82;//lalt
-	modifierMap[0xA3] = 0x84;//rctrl
-	modifierMap[0xA1] = 0x85;//rshift
-	modifierMap[0xA5] = 0x86;//lalt
-	modifierMap[0x5B] = 0x83;//lwin
-	modifierMap[0x5C] = 0x87;//rwin
+	modifierMap[0xA2] = 0xE0;//lctrl
+	modifierMap[0xA0] = 0xE1;//lshift
+	modifierMap[0xA4] = 0xE2;//lalt
+	modifierMap[0xA3] = 0xE0;//rctrl
+	modifierMap[0xA1] = 0xE1;//rshift
+	modifierMap[0xA5] = 0xE2;//ralt
+	modifierMap[0x5B] = 0xE3;//lwin
+	modifierMap[0x5C] = 0xE7;//rwin
 
 
 
@@ -64,7 +63,7 @@ void KeyboardTranslator::fillModMap()
 	*/
 	for (unsigned int i = 0x70; i <= 0x7B; ++i)
 	{
-		modifierMap[i] = i +0x52;
+		modifierMap[i] = i +0x52-136;
 	}
 	/*
 	#define KEY_UP_ARROW    0xDA
@@ -73,25 +72,26 @@ void KeyboardTranslator::fillModMap()
 	#define KEY_RIGHT_ARROW   0xD7
 
 	*/
-	modifierMap[0x25] = 0xD8;
-	modifierMap[0x26] = 0xDA;
-	modifierMap[0x27] = 0xD7;
-	modifierMap[0x28] = 0xD9;
+	modifierMap[0x25] = 0xD8-136;
+	modifierMap[0x26] = 0xDA-136;
+	modifierMap[0x27] = 0xD7-136;
+	modifierMap[0x28] = 0xD9-136;
 	
-	modifierMap[0x21] = 0xD3;//pup
-	modifierMap[0x22] = 0xD6;//pdw
-	modifierMap[0x23] = 0xD5;//end
-	modifierMap[0x24] = 0xD2;//home
-	modifierMap[0x2D] = 0xD1;//insert
-	modifierMap[0x2E] = 0xD4;//delete
-	modifierMap[0x14] = 0xC1;//caps
-	modifierMap[0x1B] = 0xB1;//esc
+	modifierMap[0x21] = 0xD3-136;//pup
+	modifierMap[0x22] = 0xD6-136;//pdw
+	modifierMap[0x23] = 0xD5-136;//end
+	modifierMap[0x24] = 0xD2-136;//home
+	modifierMap[0x2D] = 0xD1-136;//insert
+	modifierMap[0x2E] = 0xD4-136;//delete
+	modifierMap[0x14] = 0xC1-136;//caps
+	modifierMap[0x1B] = 0xB1-136;//esc
 
 
 	//numbers
-	for (unsigned int i = 0x30; i <= 0x39; ++i)
+	modifierMap[0x30] = 0x27;
+	for (unsigned int i = 0x31; i <= 0x39; ++i)
 	{
-		modifierMap[i] = i - 0x09;
+		modifierMap[i] = i - 0x13;
 	}
 	//A-Z
 	for (unsigned int i = 0x41; i <= 0x5A; ++i)
@@ -132,7 +132,7 @@ void KeyboardTranslator::fillModMap()
 	#define KEY_RETURN      0xB0
 
 	*/
-	modifierMap[0x08] = 0xB2;
-	modifierMap[0x09] = 0xB3;
-	modifierMap[0x0D] = 0xB0;
+	modifierMap[0x08] = 0xB2-136;
+	modifierMap[0x09] = 0xB3-136;
+	modifierMap[0x0D] = 0xB0-136;
 }

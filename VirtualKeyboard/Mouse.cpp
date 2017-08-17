@@ -62,6 +62,6 @@ void Mouse::updatePosition(int x, int y)
 
 void Mouse::updateWheel(int distance)
 {
-	report.Wheel = (distance>>16);
+	report.Wheel = distance > 0 ? 20 : -20;
 	reportChanged(report);
 }

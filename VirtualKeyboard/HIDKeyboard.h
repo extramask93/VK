@@ -15,7 +15,7 @@ struct Report:public IMessage
 	virtual uint8_t getSize() override;
 	virtual std::vector<uint8_t> getFields() override;
 	virtual uint8_t getPacketId() override;
-	static const uint8_t SIZE = 10;
+	static const uint8_t SIZE = 8;
 };
 
 

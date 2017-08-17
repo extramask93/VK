@@ -6,7 +6,7 @@
 class Mouse:public IMouse
 {
 public:
-	enum MouseButtons {LPM=0,PPM=2};
+	enum MouseButtons {LPM=0,PPM=1};
 	typedef boost::signals2::signal<void(MouseReport)> signal_t;
 	Mouse(IMouse &mouse);
 	boost::signals2::connection connect(const signal_t::slot_type &subscribent);
@@ -15,6 +15,7 @@ public:
 	virtual void releaseAll() override;
 	virtual void updatePosition(int x, int y) override;
 	virtual void updateWheel(int distance) override;
+	MouseReport report;
 private:
 	int prevX;
 	int prevY;
@@ -25,7 +26,6 @@ private:
 	int widthScaleFactor;
 	int heightScaleFactor;
 	MouseState state;
-	MouseReport report;
 	signal_t reportChanged;
 	IMouse &mouse;
 	// Odziedziczono za poœrednictwem elementu IMouse

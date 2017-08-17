@@ -37,7 +37,59 @@ void mousePrinter(const MouseReport &rep);
 int main(int argc, char *argv[])
 {
 	IRunMode &runmode = FreeRunningMode{};
-	auto vm = parseCommandLineArguments(argc, argv);
+	//auto vm = parseCommandLineArguments(argc, argv);
+	//po::options_description generic("Generic options");
+	//generic.add_options()
+	po::options_description configFileOptions("Allowed options");
+	configFileOptions.add_options()
+		("help,h", "Produce help message")
+		("version,v", "Print version number")
+		("macro,i", po::value<std::string>(), "run given script")
+		("record,r", po::value<std::string>(), "record")
+		("keyboard,k", "hook keyboard")//done
+		("mouse,m", "hook mouse")//done
+		("dual,d", "run in dual mode")//done
+		("singular,s", "run in sigular mode")
+		("ip", po::value<std::string>(), "specify target ip address")
+		("port", po::value<std::string>(), "specify target ip address")
+		;
+	//po::options_description cmdOptions{};
+	//cmdOptions..add(configFileOptions);
+	po::variables_map vm;
+	auto a = *argv;
+	try {
+		po::store(po::parse_command_line(argc, argv, configFileOptions), vm);
+	}
+	catch (std::exception &ex)
+	{
+		cout << ex.what();
+	}
+	ifstream ifs("config.cfg");
+	//po::store(po::parse_config_file(ifs, configFileOptions), vm);
+	po::notify(vm);
+	try {
+		conflicting_options(vm, "record", "macro");
+		conflicting_options(vm, "macro", "keyboard");
+		conflicting_options(vm, "macro", "mouse");
+		option_dependency(vm, "dual", "ip");
+		option_dependency(vm, "dual", "port");
+		option_dependency(vm, "singular", "ip");
+		option_dependency(vm, "singular", "port");
+	}
+	catch (std::exception &ex)
+	{
+		cout << ex.what() << endl;
+		exit(1);
+	}
+	if (vm.count("help")) {
+		cout << configFileOptions << "\n";
+		exit(0);
+	}
+	if (vm.count("version"))
+	{
+		cout << "v.1.0\n" << endl;
+		exit(0);
+	}
 	hidkbd.connect(printer);
 	mouse.connect(mousePrinter);
 	runmode.keyhookproc = LowLevelProcNoOp;
@@ -56,7 +108,7 @@ int main(int argc, char *argv[])
 		}
 		if (vm.count("keyboard"))
 		{
-			runmode.mousehookproc = &LowLevelMouseProc;
+			runmode.keyhookproc = &LowLevelKeyboardProc;
 		}
 	}
 	else if(vm.count("macro")) {
@@ -75,7 +127,7 @@ int main(int argc, char *argv[])
 		cout << "Record in not yet available" << endl;
 		return 1;//TODO
 	}
-	TCPThread sendThread{ vm["ip"].as<std::string>(),vm["port"].as<std::string>(),bque};
+	TCPThread sendThread{ vm["ip"].as<std::string>(),"21",bque};
 	while (sendThread.getState() == State::none);
 	if (sendThread.getState() == State::disconnected)
 		exit(2);
@@ -89,12 +141,12 @@ int main(int argc, char *argv[])
 
 
 po::variables_map parseCommandLineArguments(int argc, char *argv[]) {
-	po::options_description generic("Generic options");
-	generic.add_options()
-		("help,h", "Produce help message");
-		("version,v", "Print version number");
+	//po::options_description generic("Generic options");
+	//generic.add_options()
 	po::options_description configFileOptions("Allowed options");
 	configFileOptions.add_options()
+		("help,h", "Produce help message")
+		("version,v", "Print version number")
 		("macro,i", po::value<std::string>(), "run given script")
 		("record,r", po::value<std::string>(), "record")
 		("keyboard,k", "hook keyboard")//done
@@ -104,22 +156,36 @@ po::variables_map parseCommandLineArguments(int argc, char *argv[]) {
 		("ip",po::value<std::string>(),"specify target ip address")
 		("port",po::value<int>(),"specify target port")
 		;
-	po::options_description cmdOptions{};
-	cmdOptions.add(generic).add(configFileOptions);
+	//po::options_description cmdOptions{};
+	//cmdOptions..add(configFileOptions);
 	po::variables_map vm;
-	po::store(po::parse_command_line(argc, argv, cmdOptions), vm);
+	auto a = *argv;
+	try {
+		po::store(po::parse_command_line(argc, argv, configFileOptions), vm);
+	}
+	catch (std::exception &ex)
+	{
+		cout << ex.what();
+	}
 	ifstream ifs("config.cfg");
-	po::store(po::parse_config_file(ifs, configFileOptions), vm);
+	//po::store(po::parse_config_file(ifs, configFileOptions), vm);
 	po::notify(vm);
-	conflicting_options(vm,"record", "macro");
-	conflicting_options(vm,"macro","keyboard");
-	conflicting_options(vm,"macro", "mouse");
-	option_dependency(vm,"dual","ip");
-	option_dependency(vm, "dual", "port");
-	option_dependency(vm, "singular", "ip");
-	option_dependency(vm, "singular", "port");
+	try {
+		conflicting_options(vm, "record", "macro");
+		conflicting_options(vm, "macro", "keyboard");
+		conflicting_options(vm, "macro", "mouse");
+		option_dependency(vm, "dual", "ip");
+		option_dependency(vm, "dual", "port");
+		option_dependency(vm, "singular", "ip");
+		option_dependency(vm, "singular", "port");
+	}
+	catch (std::exception &ex)
+	{
+		cout << ex.what() << endl;
+		exit(1);
+	}
 	if (vm.count("help")) {
-		cout << cmdOptions << "\n";
+		cout <<configFileOptions << "\n";
 		 exit(0);
 	}
 	if (vm.count("version"))
@@ -149,9 +215,11 @@ void printer(const Report &rep)
 {
 	auto tp = make_shared<Report>(rep);
 	bque.push(tp);
-	printf("%i %02x [%02x %02x %02x %02x %02x %02x]\n", rep.id, rep.modifiers, rep.keys[0], rep.keys[1], rep.keys[2], rep.keys[3], rep.keys[4], rep.keys[5]);
+	printf("%i %02x [%02x %02x %02x %02x %02x %02x]\n", rep.id,rep.modifiers, rep.keys[0], rep.keys[1], rep.keys[2], rep.keys[3], rep.keys[4], rep.keys[5]);
 }
 void mousePrinter(const MouseReport &rep)
 {
+	auto tp = make_shared<MouseReport>(rep);
+	bque.push(tp);
 	printf("id: %i buttons: %i X: %i Y: %i Wheel: %i\n", rep.id, rep.buttons, rep.X, rep.Y, rep.Wheel);
 }

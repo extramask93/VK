@@ -11,6 +11,16 @@ void FreeRunningMode::Run()
 {
 	HHOOK hhkLowLevelKybd;
 	HHOOK hhkLowLevelMouse;
+	if (mousehookproc != &LowLevelProcNoOp)
+	{
+		for (int i = 0; i < 50; i++)
+		{
+			mouse.report.X = -127;
+			mouse.report.Y = -127;
+			mouse.releaseAll();
+		}
+		SetCursorPos(0,0);		
+	}
 	hhkLowLevelKybd = SetWindowsHookEx(WH_KEYBOARD_LL, keyhookproc, 0, 0);
 	hhkLowLevelMouse = SetWindowsHookEx(WH_MOUSE_LL, mousehookproc, 0, 0);
 	// Keep this app running until we're told to stop

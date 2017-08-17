@@ -140,14 +140,15 @@ void TCPThread::logIn(const std::string & username, const std::string & password
 	printf("Loggin in...\n");
 	std::string total = username + ',' + password;
 	std::vector<unsigned char> buffer;
-	buffer.push_back(total.size() + 1);
+	buffer.push_back(total.size() + 2);
 	buffer.push_back(0x10);
 	for each (auto c in total)
 	{
 		buffer.push_back(c);
 	}
+	buffer.push_back('\0');
 	uint8_t replyBuffer[2];
-	boost::asio::write(*socket, boost::asio::buffer(buffer, 2));
+	boost::asio::write(*socket, boost::asio::buffer(buffer, buffer[0]));
 	size_t reply_length = boost::asio::read(*socket,
 		boost::asio::buffer(replyBuffer, 2));
 	printf("Log in response: %02x %02x\n", replyBuffer[0], replyBuffer[1]);
