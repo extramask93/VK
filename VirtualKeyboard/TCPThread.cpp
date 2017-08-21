@@ -13,16 +13,14 @@ TCPThread::TCPThread(std::string ip, std::string port, BlockingQueue<std::shared
 
 void TCPThread::connect()
 {
-	std::cout << "Connecting to: " << ip << ": " << port << std::endl;
+	PrintThread{} << "Connecting to: " << ip << ": " << port << '\n';
 	tcp::resolver resolver(io_service);
 	tcp::resolver::query query(tcp::v4(), ip, port);
 	tcp::resolver::iterator iterator = resolver.resolve(query);
 	socket=std::shared_ptr<tcp::socket>(new tcp::socket(io_service));
 	boost::asio::connect(*socket, iterator);
-	std::cout<<"connected to:"<< ip<<':'<< port<<std::endl;
 	setState(State::waitingForHandshake);
 }
-
 void TCPThread::decodeMessage()
 {
 	std::shared_ptr<IMessage> reportToSend = keyQueue.pop();
@@ -78,7 +76,7 @@ void TCPThread::operator()()
 			getResponse();
 			handleResponse(2);
 		}
-		catch (boost::thread_interrupted& interruption)
+		catch (boost::thread_interrupted &interruption)
 		{
 			break;
 		}
@@ -107,7 +105,7 @@ void TCPThread::handleResponse(size_t len)
 	static int failures=0;
 	if (response[1] == DISCONNECT_REQ && getState()!=State::disconnected)
 	{
-		printf("Disconnect requested \n");
+		PrintThread{}<<("Disconnect requested \n");
 		buffer[0] = 0x01; buffer[1] = DISCONNECT_REQ;
 		setState(State::disconnected);
 		boost::asio::write(*socket, boost::asio::buffer(buffer, 2));
@@ -120,13 +118,13 @@ void TCPThread::handleResponse(size_t len)
 
 void TCPThread::performHandshake()
 {
-	printf("Performing handshake...\n");
+	PrintThread{}<<("Performing handshake...\n");
 	uint8_t buffer[2] = { 0x01,PROTOCOL_VER };
 	uint8_t replyBuffer[2];
 	boost::asio::write(*socket, boost::asio::buffer(buffer, 2));
 	size_t reply_length = boost::asio::read(*socket,
 		boost::asio::buffer(replyBuffer, 2));
-	printf("Handshake response: %02x %02x\n",replyBuffer[0],replyBuffer[1]);
+	//printf("Handshake response: %02x %02x\n",replyBuffer[0],replyBuffer[1]);
 	if (replyBuffer[1] == UNSUPORTED_PROTOCOL) {
 		setState(State::disconnected);
 		throw(new std::exception("Handshake failed due to unsuported protocol version"));
@@ -137,7 +135,7 @@ void TCPThread::performHandshake()
 
 void TCPThread::logIn(const std::string & username, const std::string & password)
 {
-	printf("Loggin in...\n");
+	PrintThread{}<<("Loggin in...\n");
 	std::string total = username + ',' + password;
 	std::vector<unsigned char> buffer;
 	buffer.push_back(total.size() + 2);
@@ -151,13 +149,13 @@ void TCPThread::logIn(const std::string & username, const std::string & password
 	boost::asio::write(*socket, boost::asio::buffer(buffer, buffer[0]));
 	size_t reply_length = boost::asio::read(*socket,
 		boost::asio::buffer(replyBuffer, 2));
-	printf("Log in response: %02x %02x\n", replyBuffer[0], replyBuffer[1]);
 	if (replyBuffer[1] != LOGIN_OK) {
 		setState(State::disconnected);
 		throw(new std::exception{ "Login failed" });
 	}
 	else
 		setState(State::logged);
+	PrintThread{} << "Ready\n";
 }
 
 void TCPThread::closeConnection()

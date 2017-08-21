@@ -6,11 +6,10 @@ Mouse::Mouse(IMouse & mouse): mouse{ mouse }
 	report.id = 2;
 	auto width = GetSystemMetrics(SM_CXSCREEN);
 	if (width == 0)
-		printf("No mouse installed");
+		PrintThread{}<<("No mouse installed\n");
 	auto height = GetSystemMetrics(SM_CYSCREEN);
 	if (height == 0)
-		printf("No mouse installed");
-	printf("Resolution: %dx%d",width,height);
+		PrintThread{} << ("No mouse installed\n");
 	screenWidth = width;
 	screenHeight = height;
 	widthScaleFactor = width / 127;
@@ -43,6 +42,8 @@ void Mouse::releaseAll()
 
 void Mouse::updatePosition(int x, int y)
 {
+	double scalex = 1.0;//1600.0 / screenWidth;
+		double scaley = 1.0;//900.0 / screenHeight;
 	if (x < 0)
 		x = 0;
 	if (y < 0)
@@ -55,8 +56,8 @@ void Mouse::updatePosition(int x, int y)
 	prevY = currentY;
 	currentX = x;
 	currentY = y;
-	report.X = (currentX-prevX);
-	report.Y = (currentY-prevY);
+	report.X = ceil((currentX-prevX)*scalex);
+	report.Y = ceil((currentY-prevY)*scaley);
 	reportChanged(report);
 }
 

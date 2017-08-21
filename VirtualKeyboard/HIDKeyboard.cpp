@@ -74,7 +74,7 @@ boost::signals2::connection HIDKeyboard::connect(const signal_t::slot_type & sub
 
 uint8_t Report::getSize()
 {
-	return SIZE;
+	return 10;
 }
 
 std::vector<uint8_t> Report::getFields()

@@ -5,6 +5,8 @@
 #include "IMessage.h"
 #include <memory>
 #include <boost\asio.hpp>
+#include <functional>
+#include "ThreadPrinter.h"
 #define PROTOCOL_VER 0x01
 #define LOGIN_REQ 0x10
 #define KEYBOARD_WRITE_REQ 0x30
@@ -37,6 +39,7 @@ public:
 	boost::thread internalThread;
 	BlockingQueue<std::shared_ptr<IMessage>> &keyQueue;
 private:
+	std::function<void(std::string)> print;
 	boost::asio::io_service io_service;
 	std::array<uint8_t, 20> request;
 	std::array<uint8_t, 2> response;

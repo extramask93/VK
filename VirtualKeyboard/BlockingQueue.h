@@ -26,6 +26,10 @@ T pop() {
 		_pop_event.notify_one();
 		return elem;
 	}
+void clear()
+{
+	_buffer.clear();
+}
 private:
 	boost::mutex _mutex;
 	boost::condition_variable _push_event, _pop_event;
