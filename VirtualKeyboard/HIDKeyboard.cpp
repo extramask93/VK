@@ -8,7 +8,7 @@ HIDKeyboard::HIDKeyboard()
 }
 bool HIDKeyboard::isModifier(keyType key)
 {
-	if ((key >= 0xE0 && key <= 0xE2) || (key >= 0xE4 && key <= 0xE6))
+	if ((key >= 0xE0 && key <= 0xE7))
 		return true;
 	else
 		return false;
@@ -74,7 +74,7 @@ boost::signals2::connection HIDKeyboard::connect(const signal_t::slot_type & sub
 
 uint8_t Report::getSize()
 {
-	return 10;
+	return 9;
 }
 
 std::vector<uint8_t> Report::getFields()
@@ -83,7 +83,6 @@ std::vector<uint8_t> Report::getFields()
 	vu.push_back(0x30);
 	vu.push_back(id);
 	vu.push_back(modifiers);
-	vu.push_back(reserved);
 	vu.push_back(keys[0]);
 	vu.push_back(keys[1]);
 	vu.push_back(keys[2]);
