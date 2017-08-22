@@ -1,33 +1,9 @@
-﻿  stdafx.cpp
-  BlockingQueue.cpp
-  ConfigLoader.cpp
-  FreeRunningMode.cpp
-  HIDKeyboard.cpp
-  HIDMouse.cpp
-  IKeyboard.cpp
-  IMessage.cpp
-  IMouse.cpp
-  ITranslator.cpp
-  Keyboard.cpp
-  KeyboardTranslator.cpp
-KeyboardTranslator.cpp(15): warning C4101: "ex": lokalna zmienna, do której nie istnieje odwołanie
-  Macro.cpp
-Macro.cpp(167): warning C4101: "ex": lokalna zmienna, do której nie istnieje odwołanie
-Macro.cpp(354): warning C4101: "ex": lokalna zmienna, do której nie istnieje odwołanie
-  MacroMode.cpp
-  MDParser.cpp
-  Message.cpp
-  Mouse.cpp
-Mouse.cpp(59): warning C4244: "=": konwersja z "double" do "int8_t", możliwa utrata danych
-Mouse.cpp(60): warning C4244: "=": konwersja z "double" do "int8_t", możliwa utrata danych
-  TCPThread.cpp
+﻿  TCPThread.cpp
 TCPThread.cpp(79): warning C4101: "interruption": lokalna zmienna, do której nie istnieje odwołanie
 TCPThread.cpp(141): warning C4267: "argument": konwersja z "size_t" do "uint8_t", możliwa utrata danych
-  ThreadPrinter.cpp
-  VirtualKeyboard.cpp
   Trwa generowanie kodu
-  5071 of 5155 functions (98.4%) were compiled, the rest were copied from previous compilation.
-    4356 functions were new in current compilation
-    35 functions had inline decision re-evaluated but remain unchanged
+  0 of 5402 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
   Zakończono generowanie kodu
+    0 functions were new in current compilation
+    38 functions had inline decision re-evaluated but remain unchanged
   VirtualKeyboard.vcxproj -> C:\Users\PR6\documents\visual studio 2017\Projects\VirtualKeyboard\Release\VirtualKeyboard.exe
