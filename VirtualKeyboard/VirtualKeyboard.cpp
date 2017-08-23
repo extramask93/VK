@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
 			exit(2);
 		else
 			runmode->Run();
+		
 		sendThread.internalThread.interrupt();
 	}
 	catch (std::exception &ex) {

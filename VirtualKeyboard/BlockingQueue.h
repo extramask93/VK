@@ -30,6 +30,11 @@ void clear()
 {
 	_buffer.clear();
 }
+bool isEmpty()
+{
+	std::lock_guard<boost::mutex>lock(_mutex);
+	return _buffer.empty();
+}
 private:
 	boost::mutex _mutex;
 	boost::condition_variable _push_event, _pop_event;

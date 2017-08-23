@@ -17,6 +17,7 @@
 #include <boost\lexical_cast.hpp>
 #include <boost\algorithm\string.hpp>
 #include "maps.h"
+
 typedef Report KeyReport;
 enum class Format
 {
@@ -31,6 +32,7 @@ public:
 	void sleepS(std::string  l);
 	void sleepMS(std::string l);
 	void keyboardPush(std::string l);
+	void keyboardWrite(std::string l);
 	size_t keyboardRelease(std::string l);
 	void keyboardReleaseAll(std::string l);
 	size_t mousePush(std::string);

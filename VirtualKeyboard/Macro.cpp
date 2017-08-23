@@ -1,6 +1,34 @@
 #include "stdafx.h"
 #include "Macro.h"
-
+std::map<std::string, uint8_t> npr{
+	{ "KEY_UP_ARROW",0xDA },
+	{ "KEY_DOWN_ARROW",0xD9 },
+	{ "KEY_LEFT_ARROW",0xD8 },
+	{ "KEY_RIGHT_ARROW",0xD7 },
+	{ "KEY_BACKSPACE",0xB2 },
+	{ "KEY_TAB",0xB3 },
+	{ "KEY_RETURN",0xB0 },
+	{ "KEY_ESC",0xB1 },
+	{ "KEY_INSERT",0xD1 },
+	{ "KEY_DELETE",0xD4 },
+	{ "KEY_PAGE_UP",0xD3 },
+	{ "KEY_HOME",0xD6 },
+	{ "KEY_END",0xD2 },
+	{ "KEY_CAPS_LOCK",0xC1 },
+	{ "KEY_F1",0xC2 },
+	{ "KEY_F2",0xC3 },
+	{ "KEY_F3",0xC4 },
+	{ "KEY_F4",0xC5 },
+	{ "KEY_F5",0xC6 },
+	{ "KEY_F6",0xC7 },
+	{ "KEY_F7",0xC8 },
+	{ "KEY_F8",0xC9 },
+	{ "KEY_F9",0xCA },
+	{ "KEY_F10",0xCB },
+	{ "KEY_F11",0xCC },
+	{ "KEY_F12",0xCD },
+	{ "KEY_SPACE",0x2C },
+};
 
 Macro::Macro(BlockingQueue<std::shared_ptr<IMessage>> &que):bque{que}
 {
@@ -9,6 +37,7 @@ Macro::Macro(BlockingQueue<std::shared_ptr<IMessage>> &que):bque{que}
 	mp["delayS"] = std::bind(&Macro::sleepS, this, std::placeholders::_1); //&Macro::sleepS;
 	mp["delayMS"] = std::bind(&Macro::sleepMS, this, std::placeholders::_1);
 	mp["keyboardPush"] = std::bind(&Macro::keyboardPush, this, std::placeholders::_1);
+	mp["keyboardWrite"] = std::bind(&Macro::keyboardWrite, this, std::placeholders::_1);
 	mp["keyboardRelease"] = std::bind(&Macro::keyboardRelease, this, std::placeholders::_1);
 	mp["keyboardReleaseAll"] = std::bind(&Macro::keyboardReleaseAll, this, std::placeholders::_1);
 	mp["mouseMove"] = std::bind(&Macro::mouseMove, this, std::placeholders::_1);
@@ -84,6 +113,12 @@ void Macro::keyboardPush(std::string l)
 	addToReport(k);
 	auto tp = std::make_shared<Report>(keyReport);
 	bque.push(tp);
+}
+
+void Macro::keyboardWrite(std::string l)
+{
+	keyboardPush(l);
+	keyboardRelease(l);
 }
 
 size_t Macro::keyboardRelease(std::string l) {
@@ -200,8 +235,14 @@ void Macro::RunShortMacro()
 {
 	for (auto &token : tokens)
 	{
-		keyboardPush(token);
-		keyboardRelease(token);
+		if (token[0] == 'M' && token[1] == 'O')//if mouse token
+		{
+
+		}
+		else {
+			keyboardPush(token);
+			keyboardRelease(token);
+		}
 	}
 }
 
@@ -251,7 +292,7 @@ uint8_t Macro::stripModifiers(uint8_t k)
 	p &= 0x7F;
 	return p;
 }
-KeyReport *Macro::addToReport(uint8_t k)
+KeyReport* Macro::addToReport(uint8_t k)
 {
 	//check if k is in already pressed
 	for (int i = 0; i < NR_OF_KEYS; ++i) {

@@ -68,6 +68,7 @@ void TCPThread::operator()()
 		std::cerr << ex.what()<<std::endl;
 		return;
 	}
+	boost::this_thread::sleep(boost::posix_time::millisec(200));
 	while (getState()!=State::disconnected)
 	{
 		try {

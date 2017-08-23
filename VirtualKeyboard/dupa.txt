@@ -1,7 +1,14 @@
 [LONG_MODE]
-mouseMove 50 0 0
-mouseMove 50 0 0
-mouseMove 50 0 0
-mousePush 4
-mouseReleaseAll
-mouseMove 127 0 0  
+keyboardWrite H
+keyboardWrite e
+keyboardWrite l
+keyboardWrite l
+keyboardWrite o
+keyboardWrite KEY_SPACE
+keyboardWrite w
+keyboardWrite o
+keyboardWrite r
+keyboardWrite l
+keyboardWrite d
+keyboardWrite KEY_RETURN
+

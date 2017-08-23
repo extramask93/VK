@@ -1,9 +1,9 @@
 ﻿  TCPThread.cpp
-TCPThread.cpp(79): warning C4101: "interruption": lokalna zmienna, do której nie istnieje odwołanie
-TCPThread.cpp(141): warning C4267: "argument": konwersja z "size_t" do "uint8_t", możliwa utrata danych
+TCPThread.cpp(80): warning C4101: "interruption": lokalna zmienna, do której nie istnieje odwołanie
+TCPThread.cpp(142): warning C4267: "argument": konwersja z "size_t" do "uint8_t", możliwa utrata danych
   Trwa generowanie kodu
-  0 of 5402 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-  Zakończono generowanie kodu
+  2 of 5577 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    38 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
   VirtualKeyboard.vcxproj -> C:\Users\PR6\documents\visual studio 2017\Projects\VirtualKeyboard\Release\VirtualKeyboard.exe
