@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockingQueue.h" />
+    <ClInclude Include="ChangeIPMode.h" />
     <ClInclude Include="ConfigLoader.h" />
     <ClInclude Include="FreeRunningMode.h" />
     <ClInclude Include="HIDKeyboard.h" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlockingQueue.cpp" />
+    <ClCompile Include="ChangeIPMode.cpp" />
     <ClCompile Include="ConfigLoader.cpp" />
     <ClCompile Include="FreeRunningMode.cpp" />
     <ClCompile Include="HIDKeyboard.cpp" />
