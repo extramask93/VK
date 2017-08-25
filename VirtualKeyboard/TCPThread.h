@@ -41,7 +41,7 @@ public:
 private:
 	std::function<void(std::string)> print;
 	boost::asio::io_service io_service;
-	std::array<uint8_t, 20> request;
+	std::array<uint8_t, 30> request;
 	std::array<uint8_t, 2> response;
 	void decodeMessage();
 	void writeRequest();

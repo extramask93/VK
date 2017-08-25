@@ -45,6 +45,7 @@ public:
 	virtual void Run() override;
 	~Macro();
 private:
+	Format format;
 	void ReadFileInLongFormat();
 	void RunLongMacro();
 	void ReadFileInShortFormat();

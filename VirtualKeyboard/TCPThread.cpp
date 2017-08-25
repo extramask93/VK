@@ -23,6 +23,7 @@ void TCPThread::connect()
 }
 void TCPThread::decodeMessage()
 {
+	//request.fill(0);
 	std::shared_ptr<IMessage> reportToSend = keyQueue.pop();
 	IMessage &message = *reportToSend;
 	auto fields = message.getFields();

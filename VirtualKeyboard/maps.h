@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <map>
 #include <string>
+#define LPM 1
+#define PPM 2
 #define SHIFT 0x80
 #define KSIZE 128
 #define KEY_UP_ARROW    0xDA

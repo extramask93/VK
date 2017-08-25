@@ -51,7 +51,7 @@ int Macro::load(std::string const fname)
 	try {
 		file.open(fname, std::fstream::in);
 		std::getline(file, buffer);
-		Format format = ParseHeader(buffer);
+		format = ParseHeader(buffer);
 		if (format == Format::Long) {
 			ReadFileInLongFormat();
 		}
@@ -72,7 +72,7 @@ void Macro::sleepS(std::string l)
 	try {
 		delay = boost::lexical_cast<unsigned int>(l);
 	}
-	catch (const boost::bad_lexical_cast& ex)
+	catch (const boost::bad_lexical_cast)
 	{
 		throw ParseException{ "Wrong parameter" };
 	}
@@ -160,9 +160,13 @@ void Macro::keyboardReleaseAll(std::string l)
 
 size_t Macro::mousePush(std::string l)
 {
-		std::istringstream str{ l };
 		unsigned int key;
-		str >> key;
+		if (l == "LPM")
+			key = LPM;
+		else if (l == "PPM")
+			key = PPM;
+		else
+			return 1;
 		mouseReport.buttons |= key;
 		mouseMove("0,0,0");
 		return 0;
@@ -176,9 +180,13 @@ void Macro::mouseReleaseAll(std::string l)
 
 size_t Macro::mouseRelease(std::string l)
 {
-		std::istringstream str{ l };
-		unsigned int key;
-		str >> key;
+	unsigned int key;
+	if (l == "LPM")
+		key = LPM;
+	else if (l == "PPM")
+		key = PPM;
+	else
+		return 1;
 		mouseReport.buttons &= ~key;
 		mouseMove("0,0,0");
 		return key;
@@ -204,6 +212,9 @@ void Macro::ReadFileInLongFormat()
 {
 	while (std::getline(file, buffer))
 	{
+		boost::trim(buffer);
+		if (buffer.empty())
+			continue;
 		lines.push_back(buffer);
 	}
 }
@@ -235,9 +246,17 @@ void Macro::RunShortMacro()
 {
 	for (auto &token : tokens)
 	{
-		if (token[0] == 'M' && token[1] == 'O')//if mouse token
+		if (token[0] == 'M' && token[1] == 'M')//if mouse token
 		{
-
+			std::string temp =token.substr(2);
+			std::replace(temp.begin(), temp.end(), ',', ' ');
+			mouseMove(temp);
+		}
+		else if (token[0] == 'M' && token[1] == 'C')
+		{
+			std::string temp = token.substr(2);
+			mousePush(temp);
+			mouseRelease(temp);
 		}
 		else {
 			keyboardPush(token);
@@ -250,7 +269,7 @@ uint8_t Macro::KeyCodeFromString(std::string s)
 {
 	uint8_t k;
 	if (npr.count(s))
-		return npr[s];
+		k=npr[s];
 	else {
 		std::istringstream str{ s };
 		str >> k;
@@ -262,7 +281,7 @@ void Macro::ReadFileInShortFormat()
 {
 	std::stringstream tempBuffer;
 	tempBuffer << file.rdbuf();
-	boost::split(tokens, tempBuffer.str(), boost::is_any_of("\t\r "), boost::token_compress_on);
+	boost::split(tokens, tempBuffer.str(), boost::is_any_of("\t\r\n "), boost::token_compress_on);
 }
 
 Format Macro::ParseHeader(std::string header)
@@ -320,11 +339,15 @@ KeyReport* Macro::subtractFromReport(uint8_t k) {
 void Macro::Run()
 {
 	try {
-		RunLongMacro();
+		if (format == Format::Long)
+			RunLongMacro();
+		else
+			RunShortMacro();
 	}
 	catch (const std::exception &ex)
 	{
 		PrintThread{} << ex.what();
 		return;
 	}
+	while (1);
 }

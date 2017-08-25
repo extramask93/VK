@@ -1,7 +1,8 @@
-﻿  ChangeIPMode.cpp
+﻿  Macro.cpp
+Macro.cpp(88): warning C4101: "ex": lokalna zmienna, do której nie istnieje odwołanie
   Trwa generowanie kodu
-  652 of 5598 functions (11.6%) were compiled, the rest were copied from previous compilation.
-    34 functions were new in current compilation
-    310 functions had inline decision re-evaluated but remain unchanged
+  7 of 5775 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    16 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   VirtualKeyboard.vcxproj -> C:\Users\PR6\documents\visual studio 2017\Projects\VirtualKeyboard\Release\VirtualKeyboard.exe

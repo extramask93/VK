@@ -1,14 +1,7 @@
+[SHORT_MODE]
+H e l l o W o r l d KEY_RETURN KEY_UP_ARROW
+MM100,100,0 
+MCPPM KEY_ESC
 [LONG_MODE]
-keyboardWrite H
-keyboardWrite e
-keyboardWrite l
-keyboardWrite l
-keyboardWrite o
-keyboardWrite KEY_SPACE
-keyboardWrite w
-keyboardWrite o
-keyboardWrite r
-keyboardWrite l
-keyboardWrite d
-keyboardWrite KEY_RETURN
-
+delayMS 200
+keyboardWrite A

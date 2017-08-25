@@ -12,6 +12,7 @@ po::variables_map CMDParser::parseCommandLineArguments(int argc, char *argv[]) {
 		("version,v", "Print version number")
 		("verbose","Print logs")
 		("macro,i", po::value<std::string>(), "run given script")
+		("setip",po::value<std::string>(),"set static ip for the target")
 		("record,r", po::value<std::string>(), "record")
 		("keyboard,k", "hook keyboard")//done
 		("mouse,m", "hook mouse")//done
@@ -34,11 +35,16 @@ po::variables_map CMDParser::parseCommandLineArguments(int argc, char *argv[]) {
 	try {
 		conflicting_options(vm, "record", "macro");
 		conflicting_options(vm, "macro", "keyboard");
+		conflicting_options(vm, "setip", "macro");
+		conflicting_options(vm, "setip", "record");
+		conflicting_options(vm, "setip", "keyboard");
+		conflicting_options(vm, "setip", "mouse");
 		conflicting_options(vm, "macro", "mouse");
 		option_dependency(vm, "dual", "ip");
 		option_dependency(vm, "dual", "port");
 		option_dependency(vm, "singular", "ip");
 		option_dependency(vm, "singular", "port");
+		option_dependency(vm, "setmask", "setgate");
 	}
 	catch (std::exception &ex)
 	{

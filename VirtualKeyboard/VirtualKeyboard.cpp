@@ -14,6 +14,7 @@
 #include "TCPThread.h"
 #include "KeyboardTranslator.h"
 #include "MDParser.h"
+#include "ChangeIPMode.h"
 #include <string>
 #include <iostream>
 
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
 {
 	try {
 		Macro macro{ bque };
+		ChangeIPMode changeIPMode{};
 		IRunMode *runmode = new FreeRunningMode{};
 		CMDParser parser;
 		auto vm = parser.parseCommandLineArguments(argc, argv);
@@ -77,12 +79,26 @@ int main(int argc, char *argv[])
 				return 1;
 			}
 		}
+		else if (vm.count("setip"))
+		{
+			try {
+				std::vector<std::string> specs;
+				boost::split(specs, vm["setip"].as<std::string>(), boost::is_any_of(","), boost::token_compress_off);
+				changeIPMode.ParseAddress(boost::lexical_cast<uint16_t>(specs[0]),specs[1],boost::lexical_cast<uint16_t>(specs[2]),specs[3],specs[4]);
+				runmode = &changeIPMode;
+			}
+			catch (std::exception &ex)
+			{
+				PrintThread{} << ex.what();
+				exit(1);
+			}
+		}
 		else if (vm.count("record"))
 		{
 			PrintThread{} << "Recording not yet available\n";
 			return 1;
 		}
-		TCPThread sendThread{ vm["ip"].as<std::string>(),"21",bque };
+		TCPThread sendThread{ vm["ip"].as<std::string>(),vm["port"].as<std::string>(),bque };
 		bque.clear();
 		while (sendThread.getState() == State::none)
 			std::this_thread::sleep_for(1s);
@@ -91,10 +107,11 @@ int main(int argc, char *argv[])
 		else
 			runmode->Run();
 		
-		sendThread.internalThread.interrupt();
+		//sendThread.internalThread.interrupt();
 	}
 	catch (std::exception &ex) {
 		std::cerr << ex.what();
+		return 1;
 	}
     return 0;
 }
