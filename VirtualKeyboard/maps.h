@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <map>
 #include <string>
+#define SHORT_FLAG [SHORT]
+#define LONG_FLAG [LONG]
 #define LPM 1
 #define PPM 2
 #define SHIFT 0x80
