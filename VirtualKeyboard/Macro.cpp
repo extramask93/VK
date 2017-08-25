@@ -49,16 +49,24 @@ Macro::Macro(BlockingQueue<std::shared_ptr<IMessage>> &que):bque{que}
 int Macro::load(std::string const fname)
 {
 	try {
-		/*foreach(line in file)
+		file.open(fname, std::fstream::in);
+		while (std::getline(file, buffer))
 		{
-			if(line==[SHORT])
-				parser=ShortParser;
-			else if(ilne==[LONG])
-				parser = LongParser;
-			else if(line==[DO])
+			boost::trim(buffer);
+			if (buffer.empty())
+				continue;
+			lines.push_back(buffer);
+		}
+		for(auto &line: lines)
+		{
+			if(line==SHORT_FLAG)
+				parser = ShortParser{};
+			else if(lilne==LONG_FLAG)
+				parser = LongParser{};
+			else if(line==LOOP_START_FLAG)
 				lineFlag = line+1;
 				counter = DO_INT;
-			else if(line==[END])
+			else if(line==LOOP_END_FLAG)
 				counter--;
 				counter>0? i=lineFlag;
 			else

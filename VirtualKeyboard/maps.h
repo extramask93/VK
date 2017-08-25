@@ -4,6 +4,8 @@
 #include <string>
 #define SHORT_FLAG [SHORT]
 #define LONG_FLAG [LONG]
+#define LOOP_START_FLAG DO
+#define LOOP_END_FLAG END
 #define LPM 1
 #define PPM 2
 #define SHIFT 0x80
