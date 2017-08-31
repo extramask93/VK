@@ -1,2 +1,2 @@
-﻿  HIDToMacroTranslator.cpp
-c:\users\lenovo\documents\visual studio 2017\projects\temp-master\virtualkeyboard\hidtomacrotranslator.cpp(44): error C4716: 'HIDToMacroTranslator::Translate': must return a value
+﻿  VirtualKeyboard.vcxproj -> C:\Users\LENOVO\Documents\Visual Studio 2017\Projects\VK\Debug\VirtualKeyboard.exe
+  VirtualKeyboard.vcxproj -> C:\Users\LENOVO\Documents\Visual Studio 2017\Projects\VK\Debug\VirtualKeyboard.pdb (Partial PDB)

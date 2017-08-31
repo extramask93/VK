@@ -1,0 +1,32 @@
+﻿  stdafx.cpp
+  VirtualKeyboard.cpp
+  ThreadPrinter.cpp
+  TCPThread.cpp
+  ShortParser.cpp
+  RecordMode.cpp
+  Printer.cpp
+  Parser.cpp
+  ParseException.cpp
+  NoMode.cpp
+  MouseAdapter.cpp
+  Mouse.cpp
+  CMDArgsParser.cpp
+  Macro.cpp
+  LongParser.cpp
+  KeyboardTranslator.cpp
+  KeyboardAdapter.cpp
+  Keyboard.cpp
+  ITranslator.cpp
+  IMouse.cpp
+  IMessage.cpp
+  Compiling...
+  IKeyboard.cpp
+  HIDToMacroTranslator.cpp
+  HIDKeyboard.cpp
+  FreeRunningMode.cpp
+  ChangeIPMode.cpp
+  BlockingQueue.cpp
+  Generating code
+  All 8486 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  VirtualKeyboard.vcxproj -> C:\Users\LENOVO\Documents\Visual Studio 2017\Projects\VK\Release\VirtualKeyboard.exe
