@@ -1,0 +1,2 @@
+﻿  HIDToMacroTranslator.cpp
+c:\users\lenovo\documents\visual studio 2017\projects\temp-master\virtualkeyboard\hidtomacrotranslator.cpp(44): error C4716: 'HIDToMacroTranslator::Translate': must return a value

@@ -1,0 +1,5 @@
+[LONG]
+DO 2
+keyboadPush A
+keyboardReleaseAll 0
+END

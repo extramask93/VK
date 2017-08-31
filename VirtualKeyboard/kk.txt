@@ -1,0 +1,6 @@
+keyboardPush KEY_PRT_SCR
+keyboardRelease KEY_PRT_SCR
+keyboardPush KEY_SCROLL_LOCK
+keyboardRelease KEY_SCROLL_LOCK
+keyboardPush KEY_PAUSE
+keyboardRelease KEY_PAUSE

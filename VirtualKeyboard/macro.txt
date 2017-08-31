@@ -1,0 +1,6 @@
+[LONG]
+DO 5
+[SHORT]
+MM20,0,0
+[LONG]
+END
