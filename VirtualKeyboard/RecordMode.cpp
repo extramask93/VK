@@ -45,7 +45,7 @@ void RecordMode::Run()
 {
 	FreeRunningMode::Run();
 	file.open(fileName, std::ofstream::out);
-	file << SHORT_FLAG<<'\n';
+	file << LONG_FLAG<<'\n';
 	file<<buffer.str();
 	file.close();
 }

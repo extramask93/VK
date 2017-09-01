@@ -19,14 +19,16 @@
   ITranslator.cpp
   IMouse.cpp
   IMessage.cpp
-  Compiling...
+  Trwa kompilowanie...
   IKeyboard.cpp
   HIDToMacroTranslator.cpp
   HIDKeyboard.cpp
   FreeRunningMode.cpp
   ChangeIPMode.cpp
   BlockingQueue.cpp
-  Generating code
-  All 8486 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  VirtualKeyboard.vcxproj -> C:\Users\LENOVO\Documents\Visual Studio 2017\Projects\VK\Release\VirtualKeyboard.exe
+  Trwa generowanie kodu
+  8453 of 8549 functions (98.9%) were compiled, the rest were copied from previous compilation.
+    343 functions were new in current compilation
+    24 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
+  VirtualKeyboard.vcxproj -> C:\Users\PR6\Documents\Visual Studio 2017\Projects\VK\Release\VirtualKeyboard.exe

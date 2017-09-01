@@ -64,10 +64,14 @@ void KeyboardAdapter::keyboardPush(std::string l)
 		k = 0;
 	}
 	else {	// printable
-		k = keymap[k];
-		if (isPrintableReachedWithShift(k)) {// character reached with shift
-			keyReport.modifiers |= 0x02;	// the left shift modifier
-			k = stripModifiers(k); //limit to ascii(get rid of a modifier)
+		if (k == 0x2C)
+			;
+		else {
+			k = keymap[k];
+			if (isPrintableReachedWithShift(k)) {// character reached with shift
+				keyReport.modifiers |= 0x02;	// the left shift modifier
+				k = stripModifiers(k); //limit to ascii(get rid of a modifier)
+			}
 		}
 	}
 	addToReport(k);
@@ -93,12 +97,16 @@ size_t KeyboardAdapter::keyboardRelease(std::string l)
 		k = 0;
 	}
 	else {	// printable
-		k = keymap[k];
-		if (!k)
-			return 0;
-		if (isPrintableReachedWithShift(k)) {// character reached with shift
-			keyReport.modifiers &= ~(0x02);	// the left shift modifier
-			k = stripModifiers(k); //limit to ascii(get rid of a modifier)
+		if (k == 0x2C)
+			;
+		else {
+			k = keymap[k];
+			if (!k)
+				return 0;
+			if (isPrintableReachedWithShift(k)) {// character reached with shift
+				keyReport.modifiers &= ~(0x02);	// the left shift modifier
+				k = stripModifiers(k); //limit to ascii(get rid of a modifier)
+			}
 		}
 	}
 	subtractFromReport(k);
