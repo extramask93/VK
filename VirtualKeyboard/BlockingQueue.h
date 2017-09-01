@@ -3,12 +3,13 @@
 #include <deque>
 #include <mutex>
 static boost::mutex s_iomutex;
+//!Thread safe Queue used for communication between childs of IRunMode and TCP Thread
 template <typename T> class BlockingQueue {
 public:
 	explicit BlockingQueue(size_t capacity) : _buffer(), _capacity(capacity) {
 		assert(capacity > 0);
 	}
-
+//!Pushes element on the queue
 void push(const T &elem) {
 		boost::unique_lock<boost::mutex> lock(_mutex);
 		_pop_event.wait(lock, [&] { return _buffer.size() < _capacity; });
@@ -16,7 +17,7 @@ void push(const T &elem) {
 		_push_event.notify_one(); // notifies one of the waiting threads which are blocked on the queue
 								  // assert(!_buffer.empty());
 	}
-
+//!Pops element from the queue
 T pop() {
 		boost::unique_lock<boost::mutex> lock(_mutex);
 		_push_event.wait(lock, [&] { return _buffer.size() > 0; });

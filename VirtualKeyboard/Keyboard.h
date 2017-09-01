@@ -8,11 +8,12 @@
 using signal2_t = boost::signals2::signal<void(const uint32_t key, std::string)>;
 #define MAX_KEYS 6
 using Keys_t= std::array<keyType, MAX_KEYS>;
+//!Class encapsulating state of current machine keyboard
 class Keyboard: public IKeyboard
 {
 public:
 	Keyboard(ITranslator &tr, IKeyboard &keyboard) :keyboard {keyboard}, translator { tr } {}
-	boost::signals2::connection connect(const signal2_t::slot_type &subscriber);
+	boost::signals2::connection connect(const signal2_t::slot_type &subscriber);//!<Keyboard state changed subscription
 	virtual void push(keyType key) override;
 	virtual void release(keyType key) override;
 	virtual void releaseAll()override;

@@ -1,6 +1,7 @@
 #pragma once
 #include "IRunMode.h"
 #include <stdexcept>
+//! Indicates that no mode settings found in command arguments
 class NoMode :
 	public IRunMode
 {

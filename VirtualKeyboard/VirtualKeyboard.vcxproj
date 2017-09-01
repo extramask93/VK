@@ -163,7 +163,6 @@
     <ClInclude Include="ChangeIPMode.h" />
     <ClInclude Include="FreeRunningMode.h" />
     <ClInclude Include="HIDKeyboard.h" />
-    <ClInclude Include="HIDToMacroTranslator.h" />
     <ClInclude Include="IKeyboard.h" />
     <ClInclude Include="IMessage.h" />
     <ClInclude Include="IMouse.h" />
@@ -194,7 +193,6 @@
     <ClCompile Include="ChangeIPMode.cpp" />
     <ClCompile Include="FreeRunningMode.cpp" />
     <ClCompile Include="HIDKeyboard.cpp" />
-    <ClCompile Include="HIDToMacroTranslator.cpp" />
     <ClCompile Include="IKeyboard.cpp" />
     <ClCompile Include="IMessage.cpp" />
     <ClCompile Include="IMouse.cpp" />

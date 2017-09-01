@@ -5,6 +5,7 @@
 #include "IMessage.h"
 #include <memory>
 #include <boost\asio.hpp>
+#include <iostream>
 #include <functional>
 #define PROTOCOL_VER 0x01
 #define LOGIN_REQ 0x10
@@ -26,7 +27,7 @@ struct DisconnectMessage: IMessage
 	std::vector<uint8_t> getFields() override { return std::vector<uint8_t>{getPacketId()}; }
 	~DisconnectMessage()override{}
 };
-
+//! Represents state of the connection
 enum class State {
 	none,
 	disconnected,
@@ -34,7 +35,7 @@ enum class State {
 	logged,
 	waitingForHandshake
 };
-
+//! Encapsulates TCP communication
 class TCPThread
 {
 public:
@@ -43,7 +44,7 @@ public:
 	volatile State state;
 	State getState() const;
 	void setState(State state_);
-	void operator()();
+	void operator()();//!< runs the thread
 	~TCPThread();
 	boost::thread internalThread;
 	void closeConnection();

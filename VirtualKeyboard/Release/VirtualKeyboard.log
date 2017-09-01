@@ -1,34 +1,17 @@
-﻿  stdafx.cpp
-  VirtualKeyboard.cpp
-  ThreadPrinter.cpp
-  TCPThread.cpp
+﻿  VirtualKeyboard.cpp
+  Printer.cpp
+  Mouse.cpp
+  Trwa kompilowanie...
   ShortParser.cpp
   RecordMode.cpp
-  Printer.cpp
   Parser.cpp
-  ParseException.cpp
-  NoMode.cpp
   MouseAdapter.cpp
-  Mouse.cpp
-  CMDArgsParser.cpp
   Macro.cpp
   LongParser.cpp
-  KeyboardTranslator.cpp
-  KeyboardAdapter.cpp
-  Keyboard.cpp
-  ITranslator.cpp
-  IMouse.cpp
-  IMessage.cpp
-  Trwa kompilowanie...
-  IKeyboard.cpp
-  HIDToMacroTranslator.cpp
-  HIDKeyboard.cpp
   FreeRunningMode.cpp
-  ChangeIPMode.cpp
-  BlockingQueue.cpp
   Trwa generowanie kodu
-  8453 of 8549 functions (98.9%) were compiled, the rest were copied from previous compilation.
-    343 functions were new in current compilation
-    24 functions had inline decision re-evaluated but remain unchanged
+  0 of 8549 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    84 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   VirtualKeyboard.vcxproj -> C:\Users\PR6\Documents\Visual Studio 2017\Projects\VK\Release\VirtualKeyboard.exe

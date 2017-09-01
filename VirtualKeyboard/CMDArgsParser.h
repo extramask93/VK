@@ -5,6 +5,7 @@
 
 namespace po = boost::program_options;
 using namespace std;
+//! Class used to obtain map of parameters supplied to the command line and to check dependencies/conflicts of options 
 class CMDArgsParser
 {
 public:

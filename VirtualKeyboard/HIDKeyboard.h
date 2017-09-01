@@ -7,7 +7,7 @@
 #define KEYBOARD_WRITE_REQ 0x30
 struct Report;
 using signal_t = boost::signals2::signal<void(const Report&)>;
-
+//! Message containing HID report in the format compliant to one used by remote device
 struct Report: public IMessage 
 {
 	uint8_t id;
@@ -21,14 +21,14 @@ struct Report: public IMessage
 	virtual uint8_t getPacketId() override;
 };
 
-
+//! Encapsulates current state of the HID keyboard
 class HIDKeyboard :
 	public IKeyboard
 {
 public:
 	HIDKeyboard();
-	boost::signals2::connection connect(const signal_t::slot_type &subscriber);
-	void disconnectAll();
+	boost::signals2::connection connect(const signal_t::slot_type &subscriber);//!< subscription of the keystroke events
+	void disconnectAll();//!< Disconnects subscribents of the keystroke events
 	virtual void push(keyType key) override;
 	virtual void release(keyType key) override;
 	virtual void releaseAll() override;

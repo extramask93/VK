@@ -1,9 +1,9 @@
 #pragma once
 #include "Keyboard.h"
 #include "IMouse.h"
-#include "ThreadPrinter.h"
 #include <Windows.h>
 #include <boost\signals2.hpp>
+#include "ThreadPrinter.h"
 class Mouse: public IMouse
 {
 public:

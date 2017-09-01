@@ -7,12 +7,12 @@
 #include "Printer.h"
 #include "BlockingQueue.h"
 
-LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK LowLevelProcNoOp(int nCode, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK LowLevelKeyboardProcDual(int nCode, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK LowLevelMouseProcDual(int nCode, WPARAM wParam, LPARAM lParam);
-
+LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);//!< Hooks keyboard and blocks keystrokes from propagating further
+LRESULT CALLBACK LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam); //!< Hooks mouse and blocks events from propagating further
+LRESULT CALLBACK LowLevelProcNoOp(int nCode, WPARAM wParam, LPARAM lParam);//!< Function used as a dummy, only tranfers control to the oprating system
+LRESULT CALLBACK LowLevelKeyboardProcDual(int nCode, WPARAM wParam, LPARAM lParam); // !< Hooks keyboard and tranfers control to the oprating system
+LRESULT CALLBACK LowLevelMouseProcDual(int nCode, WPARAM wParam, LPARAM lParam);//!< Hooks mouse and tranfers control to the oprating system
+//! Implements mode in which events are transfered in real time to remote device
 class FreeRunningMode :
 	public IRunMode
 {

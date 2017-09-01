@@ -15,10 +15,10 @@ class Parser
 {
 public:
 	Parser();
-	uint8_t KeyCodeFromString(std::string s) const;
-	bool ParseLoop(std::string line);
-	virtual std::vector<std::function<void()>> Parse(std::string)=0;
-	virtual void confirmFunctionExisting(std::string const &name);
+	uint8_t KeyCodeFromString(std::string s) const;//!< Returns HID key code
+	bool ParseLoop(std::string line);//!< Determines if give line is an loop statement
+	virtual std::vector<std::function<void()>> Parse(std::string)=0;//!< Returns vector of functors representing each command in a string
+	virtual void confirmFunctionExisting(std::string const &name);//!< Throws if function name i not valid
 	CountType GetNumberOfLoopRepetitions() const;
 	virtual ~Parser();
 	//

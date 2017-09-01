@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <array>
 typedef uint32_t keyType;
+//! Interface used by all classess wishing to represent keyboard state
 class IKeyboard
 {
 public:
