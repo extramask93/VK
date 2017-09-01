@@ -55,7 +55,6 @@ int main(int argc, char *argv[])
 	catch(ParseException const &ex)
 	{
 		std::cerr << ex.what() << std::endl;
-		system("PAUSE");
 		exit(2);
 	}
 	catch (std::exception &ex) {
@@ -66,6 +65,5 @@ int main(int argc, char *argv[])
 	{
 		exit(3);
 	}
-	system("PAUSE");
     return 0;
 }

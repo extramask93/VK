@@ -1,17 +1,7 @@
-﻿  VirtualKeyboard.cpp
-  Printer.cpp
-  Mouse.cpp
-  Trwa kompilowanie...
-  ShortParser.cpp
-  RecordMode.cpp
-  Parser.cpp
-  MouseAdapter.cpp
-  Macro.cpp
-  LongParser.cpp
-  FreeRunningMode.cpp
+﻿  TCPThread.cpp
   Trwa generowanie kodu
-  0 of 8549 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  15 of 8547 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    84 functions had inline decision re-evaluated but remain unchanged
+    15 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   VirtualKeyboard.vcxproj -> C:\Users\PR6\Documents\Visual Studio 2017\Projects\VK\Release\VirtualKeyboard.exe

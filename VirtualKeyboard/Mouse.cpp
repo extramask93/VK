@@ -55,6 +55,26 @@ void Mouse::releaseAll()
 
 void Mouse::updatePosition(int x, int y)
 {
+	/*static int directionx;
+	static int directiony;
+	static int xcnt;
+	static int ycnt;
+	static bool wasProgrammaticallyChanged = false;
+	if (x >= screenWidth)
+		xcnt--;
+	if (x <= screenWidth)
+		cnt++;
+	if (y >= screenHeight)
+		xcnt--;
+	if (y <= screenHeight)
+		cnt++;
+	if (ycnt == 20) {
+		ycnt = 0;
+		GetCursorPos()
+	}
+	if (xcnt == 20) {
+		xcnt = 0;
+	}*/
 
 	if (x < 0)
 		x = 0;

@@ -21,7 +21,7 @@ ChangeIPMode::ChangeIPMode(BlockingQueue<std::shared_ptr<IMessage>> &bque_, boos
 {
 	std::vector<std::string> specs;
 	boost::split(specs, vm["setip"].as<std::string>(), boost::is_any_of(","), boost::token_compress_off);
-	ParseAddress(boost::lexical_cast<uint16_t>(specs[0]), specs[1], boost::lexical_cast<uint16_t>(specs[2]), specs[3], specs[4]);
+	ParseAddress(boost::lexical_cast<uint16_t>(specs[0]), specs[1], boost::lexical_cast<uint16_t>(specs[2]), specs[3],specs[4]);
 }
 
 ChangeIPMode::~ChangeIPMode()

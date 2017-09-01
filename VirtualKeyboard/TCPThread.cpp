@@ -94,8 +94,8 @@ void TCPThread::operator()()
 TCPThread::~TCPThread()
 {
 	setState(State::disconnected);
-	if(socket->is_open())
-		socket->close();
+	//if(socket->is_open())
+		//socket->close();
 	internalThread.join();
 }
 
