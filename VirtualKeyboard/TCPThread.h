@@ -20,6 +20,7 @@
 #define USER_ID "root,root"
 
 using boost::asio::ip::tcp;
+//! Message representing disconnect request
 struct DisconnectMessage: IMessage
 {
 	uint8_t getSize() override { return 1; }

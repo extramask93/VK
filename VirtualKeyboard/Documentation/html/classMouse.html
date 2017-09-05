@@ -55,13 +55,18 @@
   <div class="clear-floats"></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class which keeps track of mouse state.  
+ <a href="classMouse.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Mouse_8h_source.html">Mouse.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Mouse:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classMouse.png" usemap="#Mouse_map" alt=""/>
   <map id="Mouse_map" name="Mouse_map">
-<area href="classIMouse.html" alt="IMouse" shape="rect" coords="0,0,53,24"/>
+<area href="classIMouse.html" title="Iterface for mouse classess. " alt="IMouse" shape="rect" coords="0,0,53,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -84,13 +89,16 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af17bcde9b69d4770569c0a8844be54d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af17bcde9b69d4770569c0a8844be54d6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DisconnectAll</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMouse.html#af17bcde9b69d4770569c0a8844be54d6">DisconnectAll</a> ()</td></tr>
+<tr class="memdesc:af17bcde9b69d4770569c0a8844be54d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects all subscribents. <br /></td></tr>
 <tr class="separator:af17bcde9b69d4770569c0a8844be54d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e9ea1a3029d65f0e0fc81443b5a8519"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e9ea1a3029d65f0e0fc81443b5a8519"></a>
-boost::signals2::connection&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> (const signal_t::slot_type &amp;subscribent)</td></tr>
+boost::signals2::connection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMouse.html#a9e9ea1a3029d65f0e0fc81443b5a8519">connect</a> (const signal_t::slot_type &amp;subscribent)</td></tr>
+<tr class="memdesc:a9e9ea1a3029d65f0e0fc81443b5a8519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs about mouse state change. <br /></td></tr>
 <tr class="separator:a9e9ea1a3029d65f0e0fc81443b5a8519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52f5899d9a19d5da0c877b9bcc6040da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52f5899d9a19d5da0c877b9bcc6040da"></a>
-boost::signals2::connection&#160;</td><td class="memItemRight" valign="bottom"><b>connect2</b> (const signal2_t::slot_type &amp;subscribent)</td></tr>
+boost::signals2::connection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMouse.html#a52f5899d9a19d5da0c877b9bcc6040da">connect2</a> (const signal2_t::slot_type &amp;subscribent)</td></tr>
+<tr class="memdesc:a52f5899d9a19d5da0c877b9bcc6040da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs about mouse state change. <br /></td></tr>
 <tr class="separator:a52f5899d9a19d5da0c877b9bcc6040da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f831f85df98f24156746e6e20d80493"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f831f85df98f24156746e6e20d80493"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (keyType key) override</td></tr>
@@ -102,13 +110,16 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>release</b> (
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>releaseAll</b> () override</td></tr>
 <tr class="separator:a47c6de8ab0541b8b4b4504503091a71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0edb43e3de6722de74fdba0cbb47226f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0edb43e3de6722de74fdba0cbb47226f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePosition</b> (int x, int y) override</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMouse.html#a0edb43e3de6722de74fdba0cbb47226f">updatePosition</a> (int x, int y) override</td></tr>
+<tr class="memdesc:a0edb43e3de6722de74fdba0cbb47226f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates position with scaling. <br /></td></tr>
 <tr class="separator:a0edb43e3de6722de74fdba0cbb47226f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a51c3549447997e40bac54afe9e4a78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a51c3549447997e40bac54afe9e4a78"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (int8_t x, int8_t y, int8_t wheel) override</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMouse.html#a6a51c3549447997e40bac54afe9e4a78">move</a> (int8_t x, int8_t y, int8_t wheel) override</td></tr>
+<tr class="memdesc:a6a51c3549447997e40bac54afe9e4a78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates position without scaling. <br /></td></tr>
 <tr class="separator:a6a51c3549447997e40bac54afe9e4a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a816b8035dc273c2a1f55a80b9752bb97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a816b8035dc273c2a1f55a80b9752bb97"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateWheel</b> (int distance) override</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMouse.html#a816b8035dc273c2a1f55a80b9752bb97">updateWheel</a> (int distance) override</td></tr>
+<tr class="memdesc:a816b8035dc273c2a1f55a80b9752bb97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates wheel. <br /></td></tr>
 <tr class="separator:a816b8035dc273c2a1f55a80b9752bb97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -117,14 +128,16 @@ Public Attributes</h2></td></tr>
 <a class="el" href="structMouseReport.html">MouseReport</a>&#160;</td><td class="memItemRight" valign="bottom"><b>report</b></td></tr>
 <tr class="separator:a1d014f9da502ebbfc160118247d11fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class which keeps track of mouse state. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Mouse_8h_source.html">Mouse.h</a></li>
 <li>Mouse.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- Generated by DoxyPress 1.2.10 -->
 <hr class="footer"/><address class="footer"><small>
-Generated on pt. wrz 1 2017 13:12:15 for VK &nbsp; by &#160;<a href="http://www.copperspice.com/documentation-doxypress.html">
+Generated on wt. wrz 5 2017 10:16:37 for VK &nbsp; by &#160;<a href="http://www.copperspice.com/documentation-doxypress.html">
 <img class="footer" src="doxypress.png" alt="DoxyPress"/></a> 1.2.10
 </small></address>
 </body>

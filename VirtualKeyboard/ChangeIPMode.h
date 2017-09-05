@@ -27,8 +27,14 @@ class ChangeIPMode :
 	public IRunMode
 {
 public:
-	ChangeIPMode(BlockingQueue<std::shared_ptr<IMessage>> &bque_,uint8_t mode,std::string ip,uint16_t port, std::string mask, std::string gateWay);
+	/*! @param[in] que Message queue used to send by TCP Thread
+		@param[in] vm Map containing supplied command  options*/
 	ChangeIPMode(BlockingQueue<std::shared_ptr<IMessage>> &bque_,boost::program_options::variables_map const &vm);
+	/*!
+		@param[in] mode 0 or 1 value indicating either static mode or dhcp mode
+		@param[in] port Port on which remote device should listen
+		@param[in] mask Textual representation(dot format) of  Subnet mask
+		@param[in] gateWay Textual representation(dot format) of a default gateway)*/
 	void ParseAddress(uint8_t mode,std::string ip,uint16_t port, std::string mask, std::string gateWay);//!<Parses addressess to integer represetations
 	~ChangeIPMode();
 	// Odziedziczono za poœrednictwem elementu IRunMode

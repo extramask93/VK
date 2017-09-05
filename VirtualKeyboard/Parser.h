@@ -11,6 +11,7 @@
 #include "MouseAdapter.h"
 using KeyReport = Report;
 using CountType = size_t;
+//! Base class for LongParser and ShortParser encapsulates common functionalities
 class Parser
 {
 public:

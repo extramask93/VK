@@ -7,7 +7,7 @@
 #include "boost\bimap.hpp"
 using KeyReport = Report;
 using CountType = size_t;
-
+//! Class adapting HID keyboard interface to string input
 class KeyboardAdapter 
 {
 public:

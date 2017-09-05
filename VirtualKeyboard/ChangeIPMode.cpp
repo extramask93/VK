@@ -3,10 +3,6 @@
 
 extern BlockingQueue<std::shared_ptr<IMessage>> bque;
 
-ChangeIPMode::ChangeIPMode(BlockingQueue<std::shared_ptr<IMessage>> &bque_,uint8_t mode, std::string ip,uint16_t port, std::string mask, std::string gateWay):bque{bque_}
-{
-	ParseAddress(mode,ip,port,mask,gateWay);
-}
 
 void ChangeIPMode::ParseAddress(uint8_t mode, std::string ip,uint16_t port, std::string mask, std::string gateWay)
 {

@@ -3,21 +3,21 @@
 #include "IMessage.h"
 
 #define MOUSE_WRITE_REQ 0x40
-
+//! Message containing mouse data
 struct MouseReport :public IMessage
 {
-	uint8_t id;
-	uint8_t buttons;
-	int8_t X;
-	int8_t Y;
-	int8_t Wheel;
+	uint8_t id;//!< Packet id
+	uint8_t buttons;//!< Currently pushed buttons
+	int8_t X;//!< X position increment
+	int8_t Y;//!< Y Position increment
+	int8_t Wheel;//!< Wheel change (positive goes up, negative goes down)
 	// Odziedziczono za poœrednictwem elementu IMessage
 	virtual uint8_t getSize() override;
 	virtual std::vector<uint8_t> getFields() override;
 	virtual uint8_t getPacketId() override;
 };
 
-
+//! Iterface for mouse classess
 class IMouse
 {
 public:

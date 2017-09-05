@@ -219,7 +219,7 @@
     </ClCompile>
     <ClCompile Include="TCPThread.cpp" />
     <ClCompile Include="ThreadPrinter.cpp" />
-    <ClCompile Include="VirtualKeyboard.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

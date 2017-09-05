@@ -5,10 +5,13 @@
 #include "KeyboardTranslator.h"
 #include "IKeyboard.h"
 #include "boost\signals2.hpp"
+
 using signal2_t = boost::signals2::signal<void(const uint32_t key, std::string)>;
 #define MAX_KEYS 6
 using Keys_t= std::array<keyType, MAX_KEYS>;
-//!Class encapsulating state of current machine keyboard
+
+
+//! Class encapsulating state of current machine keyboard
 class Keyboard: public IKeyboard
 {
 public:
@@ -17,7 +20,7 @@ public:
 	virtual void push(keyType key) override;
 	virtual void release(keyType key) override;
 	virtual void releaseAll()override;
-	Keys_t getKeys() const;
+	Keys_t getKeys() const;//! \return State of keyboard
 	~Keyboard();
 private:
 	signal2_t keyChanged;

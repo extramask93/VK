@@ -5,7 +5,7 @@
 #include <initializer_list>
 #include <vector>
 #include <map>
-
+//! Translates keystrokes from one keyboard representation to another
 class KeyboardTranslator :public ITranslator
 {
 public:

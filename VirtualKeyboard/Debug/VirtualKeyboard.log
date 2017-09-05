@@ -1,2 +1,137 @@
-﻿  VirtualKeyboard.vcxproj -> C:\Users\PR6\Documents\Visual Studio 2017\Projects\VK\Debug\VirtualKeyboard.exe
+﻿  Main.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\memory(53): warning C4996: 'std::uninitialized_copy::_Unchecked_iterators::_Deprecate': Call to 'std::uninitialized_copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\memory(53): note: zobacz deklarację „std::uninitialized_copy::_Unchecked_iterators::_Deprecate”
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(191): note: zobacz odwołanie do funkcji szablon; wystąpienie „_FwdIt *std::uninitialized_copy<I,boost::shared_ptr<void>*>(_InIt,_InIt,_FwdIt)” jest kompilowane
+          with
+          [
+              _FwdIt=boost::shared_ptr<void> *,
+              I=boost::shared_ptr<void> *,
+              _InIt=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(178): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_rai<I,false>(I,I,boost::shared_ptr<void> *,const boost::integral_constant<bool,false> &)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(178): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_rai<I,false>(I,I,boost::shared_ptr<void> *,const boost::integral_constant<bool,false> &)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(204): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<I>(I,I,boost::shared_ptr<void> *,std::random_access_iterator_tag)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(203): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<I>(I,I,boost::shared_ptr<void> *,std::random_access_iterator_tag)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(304): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<boost::shared_ptr<void>*>(I,I,boost::shared_ptr<void> *)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(304): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<boost::shared_ptr<void>*>(I,I,boost::shared_ptr<void> *)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(302): note: podczas kompilowania funkcji członkowskiej „<Nieznany>” klasy klasa <Nieznany>
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(310): note: zobacz odwołanie do funkcji szablon; wystąpienie „boost::shared_ptr<void> *boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::move_to_new_buffer(unsigned int,const boost::true_type &)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  c:\local\boost_1_65_0\boost\signals2\connection.hpp(53): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  c:\local\boost_1_65_0\boost\signals2\connection.hpp(55): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::signals2::detail::garbage_collecting_lock<Mutex>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(54): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<9>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(53): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<8>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(52): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<7>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(51): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<6>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(50): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<5>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(49): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<4>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(48): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<3>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(47): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<2>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(46): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<1>” jest kompilowane
+  CMDArgsParser.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\memory(53): warning C4996: 'std::uninitialized_copy::_Unchecked_iterators::_Deprecate': Call to 'std::uninitialized_copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.10.25017\include\memory(53): note: zobacz deklarację „std::uninitialized_copy::_Unchecked_iterators::_Deprecate”
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(191): note: zobacz odwołanie do funkcji szablon; wystąpienie „_FwdIt *std::uninitialized_copy<I,boost::shared_ptr<void>*>(_InIt,_InIt,_FwdIt)” jest kompilowane
+          with
+          [
+              _FwdIt=boost::shared_ptr<void> *,
+              I=boost::shared_ptr<void> *,
+              _InIt=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(178): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_rai<I,false>(I,I,boost::shared_ptr<void> *,const boost::integral_constant<bool,false> &)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(178): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_rai<I,false>(I,I,boost::shared_ptr<void> *,const boost::integral_constant<bool,false> &)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(204): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<I>(I,I,boost::shared_ptr<void> *,std::random_access_iterator_tag)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(203): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<I>(I,I,boost::shared_ptr<void> *,std::random_access_iterator_tag)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(304): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<boost::shared_ptr<void>*>(I,I,boost::shared_ptr<void> *)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(304): note: zobacz odwołanie do funkcji szablon; wystąpienie „void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<boost::shared_ptr<void>*>(I,I,boost::shared_ptr<void> *)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(302): note: podczas kompilowania funkcji członkowskiej „<Nieznany>” klasy klasa <Nieznany>
+  c:\local\boost_1_65_0\boost\signals2\detail\auto_buffer.hpp(310): note: zobacz odwołanie do funkcji szablon; wystąpienie „boost::shared_ptr<void> *boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::move_to_new_buffer(unsigned int,const boost::true_type &)” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  c:\local\boost_1_65_0\boost\signals2\connection.hpp(53): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>” jest kompilowane
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  c:\local\boost_1_65_0\boost\signals2\connection.hpp(55): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::signals2::detail::garbage_collecting_lock<Mutex>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(54): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<9>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(53): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<8>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(52): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<7>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(51): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<6>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(50): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<5>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(49): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<4>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(48): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<3>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(47): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<2>” jest kompilowane
+  c:\local\boost_1_65_0\boost\bind\placeholders.hpp(46): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „boost::arg<1>” jest kompilowane
+  Generowanie kodu...
+  VirtualKeyboard.vcxproj -> C:\Users\PR6\Documents\Visual Studio 2017\Projects\VK\Debug\VirtualKeyboard.exe
   VirtualKeyboard.vcxproj -> C:\Users\PR6\Documents\Visual Studio 2017\Projects\VK\Debug\VirtualKeyboard.pdb (Partial PDB)

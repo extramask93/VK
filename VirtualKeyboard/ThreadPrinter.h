@@ -4,7 +4,7 @@
 #include <functional>
 #include <sstream>
 
-
+//! Class used to concurrent printing to standard output
 class PrintThread : public std::ostringstream
 {
 public:

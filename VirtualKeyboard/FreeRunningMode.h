@@ -17,6 +17,8 @@ class FreeRunningMode :
 	public IRunMode
 {
 public:
+	/*! @param[in] que Message queue used to send by TCP Thread
+		@param[in] vm Map containing supplied command  options*/
 	FreeRunningMode(BlockingQueue<std::shared_ptr<IMessage>> &que,boost::program_options::variables_map const &map);
 	FreeRunningMode(const FreeRunningMode &r);
 	FreeRunningMode& operator=(FreeRunningMode const &r);

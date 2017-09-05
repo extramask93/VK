@@ -69,15 +69,10 @@ Inheritance diagram for ChangeIPMode:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3107dc28c2ed2d3b4771a7a26aac0791"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3107dc28c2ed2d3b4771a7a26aac0791"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChangeIPMode</b> (<a class="el" href="classBlockingQueue.html">BlockingQueue</a>&lt; std::shared_ptr&lt; <a class="el" href="classIMessage.html">IMessage</a> &gt;&gt; &amp;bque_, uint8_t mode, std::string ip, uint16_t port, std::string mask, std::string gateWay)</td></tr>
-<tr class="separator:a3107dc28c2ed2d3b4771a7a26aac0791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5b0dd61ac249a25b6a1728cd5df5484"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5b0dd61ac249a25b6a1728cd5df5484"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChangeIPMode</b> (<a class="el" href="classBlockingQueue.html">BlockingQueue</a>&lt; std::shared_ptr&lt; <a class="el" href="classIMessage.html">IMessage</a> &gt;&gt; &amp;bque_, boost::program_options::variables_map const  &amp;vm)</td></tr>
+<tr class="memitem:af5b0dd61ac249a25b6a1728cd5df5484"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChangeIPMode.html#af5b0dd61ac249a25b6a1728cd5df5484">ChangeIPMode</a> (<a class="el" href="classBlockingQueue.html">BlockingQueue</a>&lt; std::shared_ptr&lt; <a class="el" href="classIMessage.html">IMessage</a> &gt;&gt; &amp;bque_, boost::program_options::variables_map const  &amp;vm)</td></tr>
 <tr class="separator:af5b0dd61ac249a25b6a1728cd5df5484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4c1138817b101c302736df10b146a23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c1138817b101c302736df10b146a23"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChangeIPMode.html#ab4c1138817b101c302736df10b146a23">ParseAddress</a> (uint8_t mode, std::string ip, uint16_t port, std::string mask, std::string gateWay)</td></tr>
-<tr class="memdesc:ab4c1138817b101c302736df10b146a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses addressess to integer represetations. <br /></td></tr>
+<tr class="memitem:ab4c1138817b101c302736df10b146a23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChangeIPMode.html#ab4c1138817b101c302736df10b146a23">ParseAddress</a> (uint8_t mode, std::string ip, uint16_t port, std::string mask, std::string gateWay)</td></tr>
+<tr class="memdesc:ab4c1138817b101c302736df10b146a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses addressess to integer represetations.  <a href="#ab4c1138817b101c302736df10b146a23">More...</a><br /></td></tr>
 <tr class="separator:ab4c1138817b101c302736df10b146a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c378910f1d5d83dd280e22f35fe7223"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c378910f1d5d83dd280e22f35fe7223"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> () override</td></tr>
@@ -109,14 +104,104 @@ MouseHookProc&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Encapsulates all the logic needed to change remote device settings. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af5b0dd61ac249a25b6a1728cd5df5484"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChangeIPMode::ChangeIPMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBlockingQueue.html">BlockingQueue</a>&lt; std::shared_ptr&lt; <a class="el" href="classIMessage.html">IMessage</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>bque_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::program_options::variables_map const  &amp;&#160;</td>
+          <td class="paramname"><em>vm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">que</td><td>Message queue used to send by TCP Thread </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vm</td><td>Map containing supplied command options </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab4c1138817b101c302736df10b146a23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChangeIPMode::ParseAddress </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>mask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>gateWay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses addressess to integer represetations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>0 or 1 value indicating either static mode or dhcp mode </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>Port on which remote device should listen </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>Textual representation(dot format) of Subnet mask </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gateWay</td><td>Textual representation(dot format) of a default gateway) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="ChangeIPMode_8h_source.html">ChangeIPMode.h</a></li>
 <li>ChangeIPMode.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- Generated by DoxyPress 1.2.10 -->
 <hr class="footer"/><address class="footer"><small>
-Generated on pt. wrz 1 2017 13:12:15 for VK &nbsp; by &#160;<a href="http://www.copperspice.com/documentation-doxypress.html">
+Generated on wt. wrz 5 2017 10:16:37 for VK &nbsp; by &#160;<a href="http://www.copperspice.com/documentation-doxypress.html">
 <img class="footer" src="doxypress.png" alt="DoxyPress"/></a> 1.2.10
 </small></address>
 </body>

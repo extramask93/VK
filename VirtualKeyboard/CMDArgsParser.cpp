@@ -70,6 +70,26 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 	}
 	return vm;
 }
+std::unique_ptr<IRunMode> CMDArgsParser::SelectRunMode(po::variables_map &vm)
+{
+		std::unique_ptr<IRunMode> runmode = std::make_unique<NoMode>(NoMode{});
+		if (vm.count("free"))
+		{
+			runmode = std::unique_ptr<FreeRunningMode>{ new FreeRunningMode{ bque,vm } };
+		}
+		else if (vm.count("macro")) {
+			runmode = std::unique_ptr<Macro>{ new Macro{ bque,vm } };
+		}
+		else if (vm.count("record"))
+		{
+			runmode = std::unique_ptr<RecordMode>(new RecordMode{ bque,vm });
+		}
+		else if (vm.count("setip"))
+		{
+			runmode = std::unique_ptr<ChangeIPMode>{ new ChangeIPMode{ bque,vm } };
+		}
+		return std::move(runmode);
+}
 void CMDArgsParser::conflicting_options(const po::variables_map& vm,
 	const char* opt1, const char* opt2)
 {

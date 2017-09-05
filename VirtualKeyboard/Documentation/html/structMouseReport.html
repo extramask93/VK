@@ -53,6 +53,11 @@
   <div class="clear-floats"></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Message containing mouse data.  
+ <a href="structMouseReport.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="IMouse_8h_source.html">IMouse.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MouseReport:</div>
 <div class="dyncontent">
@@ -67,7 +72,7 @@ Inheritance diagram for MouseReport:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1aa8621ae7b3f81bea7497cf416ff466"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aa8621ae7b3f81bea7497cf416ff466"></a>
 virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#a1aa8621ae7b3f81bea7497cf416ff466">getSize</a> () override</td></tr>
-<tr class="memdesc:a1aa8621ae7b3f81bea7497cf416ff466"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns size of the message in bytes. <br /></td></tr>
+<tr class="memdesc:a1aa8621ae7b3f81bea7497cf416ff466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns size of the message in bytes. <br /></td></tr>
 <tr class="separator:a1aa8621ae7b3f81bea7497cf416ff466"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae62bb87e5c5e61be13e7793e4bcc5239"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae62bb87e5c5e61be13e7793e4bcc5239"></a>
 virtual std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#ae62bb87e5c5e61be13e7793e4bcc5239">getFields</a> () override</td></tr>
@@ -75,35 +80,42 @@ virtual std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="
 <tr class="separator:ae62bb87e5c5e61be13e7793e4bcc5239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacfd73f41ec46cf5b3e39259b15cd761"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacfd73f41ec46cf5b3e39259b15cd761"></a>
 virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#aacfd73f41ec46cf5b3e39259b15cd761">getPacketId</a> () override</td></tr>
-<tr class="memdesc:aacfd73f41ec46cf5b3e39259b15cd761"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns packet id message id according to the protocol specification <br /></td></tr>
+<tr class="memdesc:aacfd73f41ec46cf5b3e39259b15cd761"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns packet id according to the protocol specification <br /></td></tr>
 <tr class="separator:aacfd73f41ec46cf5b3e39259b15cd761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1d56893cdec3374f93402ab9bc08555d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d56893cdec3374f93402ab9bc08555d"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#a1d56893cdec3374f93402ab9bc08555d">id</a></td></tr>
+<tr class="memdesc:a1d56893cdec3374f93402ab9bc08555d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Packet id. <br /></td></tr>
 <tr class="separator:a1d56893cdec3374f93402ab9bc08555d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af383281fc43b6fcae2cd24674b090c28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af383281fc43b6fcae2cd24674b090c28"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>buttons</b></td></tr>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#af383281fc43b6fcae2cd24674b090c28">buttons</a></td></tr>
+<tr class="memdesc:af383281fc43b6fcae2cd24674b090c28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently pushed buttons. <br /></td></tr>
 <tr class="separator:af383281fc43b6fcae2cd24674b090c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade02bb3d7fed6d4456f24f9c3cc82e88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade02bb3d7fed6d4456f24f9c3cc82e88"></a>
-int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>X</b></td></tr>
+int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#ade02bb3d7fed6d4456f24f9c3cc82e88">X</a></td></tr>
+<tr class="memdesc:ade02bb3d7fed6d4456f24f9c3cc82e88"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structMouseReport.html#ade02bb3d7fed6d4456f24f9c3cc82e88" title="X position increment. ">X</a> position increment. <br /></td></tr>
 <tr class="separator:ade02bb3d7fed6d4456f24f9c3cc82e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06085c3984bc8a3fed970ee7a706b9b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06085c3984bc8a3fed970ee7a706b9b7"></a>
-int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>Y</b></td></tr>
+int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#a06085c3984bc8a3fed970ee7a706b9b7">Y</a></td></tr>
+<tr class="memdesc:a06085c3984bc8a3fed970ee7a706b9b7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structMouseReport.html#a06085c3984bc8a3fed970ee7a706b9b7" title="Y Position increment. ">Y</a> Position increment. <br /></td></tr>
 <tr class="separator:a06085c3984bc8a3fed970ee7a706b9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0702ece0b1889df4658bc2832bfa2a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0702ece0b1889df4658bc2832bfa2a1"></a>
-int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>Wheel</b></td></tr>
+int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMouseReport.html#aa0702ece0b1889df4658bc2832bfa2a1">Wheel</a></td></tr>
+<tr class="memdesc:aa0702ece0b1889df4658bc2832bfa2a1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structMouseReport.html#aa0702ece0b1889df4658bc2832bfa2a1" title="Wheel change (positive goes up, negative goes down) ">Wheel</a> change (positive goes up, negative goes down) <br /></td></tr>
 <tr class="separator:aa0702ece0b1889df4658bc2832bfa2a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Message containing mouse data. </p>
+</div><hr/>The documentation for this struct was generated from the following files:<ul>
 <li><a class="el" href="IMouse_8h_source.html">IMouse.h</a></li>
 <li>IMouse.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- Generated by DoxyPress 1.2.10 -->
 <hr class="footer"/><address class="footer"><small>
-Generated on pt. wrz 1 2017 13:12:15 for VK &nbsp; by &#160;<a href="http://www.copperspice.com/documentation-doxypress.html">
+Generated on wt. wrz 5 2017 10:16:37 for VK &nbsp; by &#160;<a href="http://www.copperspice.com/documentation-doxypress.html">
 <img class="footer" src="doxypress.png" alt="DoxyPress"/></a> 1.2.10
 </small></address>
 </body>

@@ -6,6 +6,7 @@
 #include "boost\numeric\conversion\cast.hpp"
 #include "ParseException.h"
 extern BlockingQueue<std::shared_ptr<IMessage>> bque;
+//! Adapts Mouse class to string input
 class MouseAdapter
 {
 public:

@@ -7,9 +7,9 @@ class IKeyboard
 {
 public:
 	IKeyboard();
-	virtual void push(keyType key)=0;
-	virtual void release(keyType key)=0;
-	virtual void releaseAll()=0;
+	virtual void push(keyType key)=0;//!< Pushes given key on the keyboard
+	virtual void release(keyType key)=0;//!< Releases given key on the keyboard
+	virtual void releaseAll()=0;//!< Releases all pushed keys
 	virtual ~IKeyboard();
 };
 
