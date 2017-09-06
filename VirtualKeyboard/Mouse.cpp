@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Mouse.h"
-
+#include <cmath>
+#define TRESHOLD 20
 Mouse::Mouse()
 {
 	report.id = 2;
@@ -55,26 +56,35 @@ void Mouse::releaseAll()
 
 void Mouse::updatePosition(int x, int y)
 {
-	/*static int directionx;
-	static int directiony;
-	static int xcnt;
-	static int ycnt;
 	static bool wasProgrammaticallyChanged = false;
-	if (x >= screenWidth)
-		xcnt--;
-	if (x <= screenWidth)
-		cnt++;
-	if (y >= screenHeight)
-		xcnt--;
-	if (y <= screenHeight)
-		cnt++;
-	if (ycnt == 20) {
-		ycnt = 0;
-		GetCursorPos()
+	if (wasProgrammaticallyChanged)
+	{
+		wasProgrammaticallyChanged = false;
+		return;
 	}
-	if (xcnt == 20) {
-		xcnt = 0;
-	}*/
+	POINT p;
+	if (x > screenWidth) {
+		GetCursorPos(&p);
+		SetCursorPos(p.x -20, p.y);
+		wasProgrammaticallyChanged = true;
+	}//xcnt--;
+	if (x < 0) {
+		GetCursorPos(&p);
+		SetCursorPos(p.x + 20, p.y);
+		wasProgrammaticallyChanged = true;
+	}
+	if (y > screenHeight)
+	{
+		GetCursorPos(&p);
+		SetCursorPos(p.x, p.y - 20);
+		wasProgrammaticallyChanged = true;
+	}
+	if (y < 0)
+	{
+		GetCursorPos(&p);
+		SetCursorPos(p.x, p.y + 20);
+		wasProgrammaticallyChanged = true;
+	}
 
 	if (x < 0)
 		x = 0;

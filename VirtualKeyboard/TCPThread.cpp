@@ -81,6 +81,7 @@ void TCPThread::operator()()
 	{
 		setState(State::disconnected);
 		std::cerr << ex.what() << std::endl;
+		std::cout << "asd";
 		exit(1);
 	}
 	catch(...)
