@@ -83,20 +83,21 @@ FreeRunningMode::FreeRunningMode(BlockingQueue<std::shared_ptr<IMessage>> &que, 
 		hidkbd.connect(std::bind(&Printer::verbosePrinter, &printer, std::placeholders::_1));
 		mouse.connect(std::bind(&Printer::verboseMousePrinter, &printer, std::placeholders::_1));
 	}
-	
-	if (vm.count("dual"))
+	auto mode = vm["mode"].as<std::string>();
+	auto device = vm["device"].as<std::string>();
+	if (mode.find('d')!=std::string::npos)
 	{
-		if (vm.count("mouse"))
+		if (mode.find('m') != std::string::npos)
 			mousehookproc = &LowLevelMouseProcDual;
-		if (vm.count("keyboard"))
+		if (mode.find('k') != std::string::npos)
 			keyhookproc = &LowLevelKeyboardProcDual;
 	}
-	else if (vm.count("singular")) {
-		if (vm.count("mouse"))
+	else if (mode.find('s') != std::string::npos) {
+		if (mode.find('m') != std::string::npos)
 		{
 			mousehookproc = &LowLevelMouseProc;
 		}
-		if (vm.count("keyboard"))
+		if (mode.find('k') != std::string::npos)
 		{
 			keyhookproc = &LowLevelKeyboardProc;
 		}

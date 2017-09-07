@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 			exit(2);
 		}
 		runmode->Run();
+		//if (std::dynamic_cast<ChangeIPMode*>(runmode.get()) != nullptr) exit(0);
 		if(sendThread!=nullptr) sendThread->closeConnection();
 	}
 	catch(ParseException const &ex)
