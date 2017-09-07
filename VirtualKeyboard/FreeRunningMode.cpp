@@ -83,6 +83,7 @@ FreeRunningMode::FreeRunningMode(BlockingQueue<std::shared_ptr<IMessage>> &que, 
 		hidkbd.connect(std::bind(&Printer::verbosePrinter, &printer, std::placeholders::_1));
 		mouse.connect(std::bind(&Printer::verboseMousePrinter, &printer, std::placeholders::_1));
 	}
+	
 	if (vm.count("dual"))
 	{
 		if (vm.count("mouse"))

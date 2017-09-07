@@ -56,35 +56,16 @@ void Mouse::releaseAll()
 
 void Mouse::updatePosition(int x, int y)
 {
-	static bool wasProgrammaticallyChanged = false;
+	/*static bool wasProgrammaticallyChanged = false;
 	if (wasProgrammaticallyChanged)
 	{
 		wasProgrammaticallyChanged = false;
 		return;
 	}
-	POINT p;
-	if (x > screenWidth) {
-		GetCursorPos(&p);
-		SetCursorPos(p.x -20, p.y);
+	if (x > screenWidth|| x<0 || y<0 || y>screenHeight) {
 		wasProgrammaticallyChanged = true;
-	}//xcnt--;
-	if (x < 0) {
-		GetCursorPos(&p);
-		SetCursorPos(p.x + 20, p.y);
-		wasProgrammaticallyChanged = true;
-	}
-	if (y > screenHeight)
-	{
-		GetCursorPos(&p);
-		SetCursorPos(p.x, p.y - 20);
-		wasProgrammaticallyChanged = true;
-	}
-	if (y < 0)
-	{
-		GetCursorPos(&p);
-		SetCursorPos(p.x, p.y + 20);
-		wasProgrammaticallyChanged = true;
-	}
+		SetCursorPos(screenWidth / 2, screenHeight / 2);
+	}//xcnt--;*/
 
 	if (x < 0)
 		x = 0;
