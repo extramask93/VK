@@ -54,13 +54,13 @@ std::vector<uint8_t> IPMessage::getFields()
 	fields.push_back(((ip32>>24) & 0xFF));
 	fields.push_back(((port) & 0xFF));
 	fields.push_back(((port>>8) & 0xFF));
-	fields.push_back(((mask32 >> 24) & 0xFF));
-	fields.push_back(((mask32 >> 16) & 0xFF));
-	fields.push_back(((mask32 >> 8) & 0xFF));
 	fields.push_back(((mask32) & 0xFF));
-	fields.push_back(((gateWay32>> 24) & 0xFF));
-	fields.push_back(((gateWay32>> 16) & 0xFF));
-	fields.push_back(((gateWay32 >> 8) & 0xFF));
+	fields.push_back(((mask32 >> 8) & 0xFF));
+	fields.push_back(((mask32 >> 16) & 0xFF));
+	fields.push_back(((mask32>>24) & 0xFF));
 	fields.push_back(((gateWay32) & 0xFF));
+	fields.push_back(((gateWay32>> 8) & 0xFF));
+	fields.push_back(((gateWay32 >> 16) & 0xFF));
+	fields.push_back(((gateWay32>>24) & 0xFF));
 	return fields;
 }

@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <initializer_list>
 #include <vector>
-#include <map>
+#include <unordered_map>
 //! Translates keystrokes from one keyboard representation to another
 class KeyboardTranslator :public ITranslator
 {
@@ -14,6 +14,6 @@ public:
 	~KeyboardTranslator();
 private:
 	void FillModMap();
-	std::map<keyType, uint8_t> modifierMap;
+	std::unordered_map<keyType, uint8_t> modifierMap;
 };
 

@@ -1,13 +1,14 @@
 #include "RecordMode.h"
 #include <fstream>
 #include "HIDKeyboard.h"
+#include <unordered_map>
 
 extern Mouse mouse;
 extern Keyboard keyboard;
 
 namespace MP
 {
-	std::map<uint8_t, std::string> npp{
+	std::unordered_map<uint8_t, std::string> npp{
 		{ 0x26,"KEY_UP_ARROW" },{ 0x28,"KEY_DOWN_ARROW" },{ 0x25,"KEY_LEFT_ARROW" },{ 0x27,"KEY_RIGHT_ARROW" },
 		{ 0x08,"KEY_BACKSPACE" },{ 0x09,"KEY_TAB" },{ 0x0D,"KEY_RETURN" },{ 0x1B,"KEY_ESC" },{ 0x2D,"KEY_INSERT" },
 		{ 0x2E,"KEY_DELETE" },{ 0x21,"KEY_PAGE_UP" },{ 0x22,"KEY_PAGE_DOWN" },{ 0x24,"KEY_HOME" },{ 0x23,"KEY_END" },

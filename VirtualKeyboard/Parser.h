@@ -9,6 +9,7 @@
 #include "HIDKeyboard.h"
 #include "KeyboardAdapter.h"
 #include "MouseAdapter.h"
+#include <unordered_map>
 using KeyReport = Report;
 using CountType = size_t;
 //! Base class for LongParser and ShortParser encapsulates common functionalities
@@ -26,7 +27,7 @@ public:
 	void sleepS(std::string  l);
 	void sleepMS(std::string l);
 protected:
-	std::map<std::string, std::function<void(std::string)>> mp;
+	std::unordered_map<std::string, std::function<void(std::string)>> mp;
 	std::string loopCount;
 	KeyboardAdapter keyboard;
 	MouseAdapter mouse;

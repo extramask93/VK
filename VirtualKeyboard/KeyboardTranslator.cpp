@@ -84,6 +84,10 @@ void KeyboardTranslator::FillModMap()
 	modifierMap[0x2E] = 0xD4-136;//delete
 	modifierMap[0x14] = 0xC1-136;//caps
 	modifierMap[0x1B] = 0xB1-136;//esc
+	modifierMap[0x2C] = 0x46;//print scr
+	modifierMap[0x13] = 0x48;//pasue
+	modifierMap[0x91] = 0x47;// scroll lock
+
 
 
 	//numbers
@@ -118,7 +122,7 @@ void KeyboardTranslator::FillModMap()
 	0x35,          // `
 	*/
 	modifierMap[0xBA] = 0x33;
-	modifierMap[0xBB] = 0x23;
+	modifierMap[0xBB] = 0x2E;
 	modifierMap[0xDE] = 0x34;
 	modifierMap[0x20] = 0x2C;
 	modifierMap[0xDB] = 0x2F;
