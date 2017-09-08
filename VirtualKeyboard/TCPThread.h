@@ -45,7 +45,7 @@ public:
 	volatile State state;
 	State getState() const;
 	void setState(State state_);
-	void operator()();//!< runs the thread
+	int operator()();//!< runs the thread
 	~TCPThread();
 	boost::thread internalThread;
 	void closeConnection();

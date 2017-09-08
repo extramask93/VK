@@ -15,7 +15,6 @@
 #include "RecordMode.h"
 #include "ParseException.h"
 #include "NoMode.h"
-
 namespace po = boost::program_options;
 using namespace std;
 std::unique_ptr<IRunMode> SelectRunMode(po::variables_map &vm);
@@ -36,7 +35,7 @@ int main(int argc, char *argv[])
 			while (sendThread->getState() == State::none)
 				std::this_thread::sleep_for(1s);
 			if (sendThread->getState() == State::disconnected)
-			exit(2);
+			exit(1);
 		}
 		runmode->Run();
 		if(sendThread!=nullptr) sendThread->closeConnection();

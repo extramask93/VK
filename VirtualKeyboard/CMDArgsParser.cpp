@@ -26,8 +26,8 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 	po::variables_map vm;
 	auto a = *argv;
 	try {
-		po::store(po::parse_config_file(configFile,configFileOptions),vm);
 		po::store(po::parse_command_line(argc, argv, configFileOptions), vm);
+		po::store(po::parse_config_file(configFile,configFileOptions),vm);
 	}
 	catch (std::exception &ex)
 	{

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TCPThread.h"
 #include "ThreadPrinter.h"
-
+extern volatile std::atomic_bool exited;
 
 TCPThread::TCPThread(std::string ip, std::string port, BlockingQueue<std::shared_ptr<IMessage>> &que) :keyQueue{ que }, ip{ ip }, port{ port },socket{nullptr}
 {
@@ -63,7 +63,7 @@ void TCPThread::setState(State state_)
 	stateMutex->unlock();
 }
 
-void TCPThread::operator()()
+int TCPThread::operator()()
 {
 	try {
 		connect();
@@ -81,19 +81,23 @@ void TCPThread::operator()()
 	{
 		if (socket->is_open())
 			socket->close();
-		return;
+		return 1;
 	}
 	catch(std::exception const &ex)
 	{
 		setState(State::disconnected);
 		std::cerr << ex.what() << std::endl;
+		if(socket->is_open())
+			socket->close();
 		std::cout << "Disconnected.";
-		exit(1);
+		return 1;//exit(1);
 	}
 	catch(...)
 	{
+		if (socket->is_open())
+			socket->close();
 		std::cerr << "Unknown error occurred during connection\n";
-		exit(1);
+		return 1;//exit(1);
 	}
 }
 
@@ -101,8 +105,6 @@ void TCPThread::operator()()
 TCPThread::~TCPThread()
 {
 	setState(State::disconnected);
-	//if(socket->is_open())
-		//socket->close();
 	internalThread.join();
 }
 
