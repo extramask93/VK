@@ -22,11 +22,12 @@ namespace MP
 RecordMode::RecordMode(BlockingQueue<std::shared_ptr<IMessage>> &que, boost::program_options::variables_map const& vm):FreeRunningMode{ que,vm },bque{que},buffer{}
 {
 	fileName=vm["record"].as<std::string>();
-	if(vm.count("keyboard"))
+	auto device = vm["device"].as<std::string>();
+	if(device.find('k') != std::string::npos)
 	{
 		keyboard.connect(std::bind(&RecordMode::saveKeyboard,this,std::placeholders::_1,std::placeholders::_2));
 	}
-	if(vm.count("mouse"))
+	if(device.find('m') != std::string::npos)
 	{
 		mouse.connect2(std::bind(&RecordMode::saveMouse, this, std::placeholders::_1,std::placeholders::_2));
 	}

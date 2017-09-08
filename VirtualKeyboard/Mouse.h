@@ -21,8 +21,10 @@ public:
 	virtual void updatePosition(int x, int y) override;//!< Updates position with scaling
 	virtual void move(int8_t x, int8_t y, int8_t wheel) override;//!< Updates position without scaling
 	virtual void updateWheel(int distance) override;//!< Updates wheel
+	void SetScale(double sc) { scale = sc; }
 	MouseReport report;
 private:
+	double scale=1.0;
 	int prevX;
 	int prevY;
 	int currentX;

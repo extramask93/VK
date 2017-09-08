@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ChangeIPMode.h"
-
+#include <iostream>
 extern BlockingQueue<std::shared_ptr<IMessage>> bque;
 
 
@@ -21,7 +21,10 @@ ChangeIPMode::ChangeIPMode(BlockingQueue<std::shared_ptr<IMessage>> &bque_, boos
 	{
 		boost::trim(str);
 	}
-	ParseAddress(boost::lexical_cast<uint16_t>(specs[0]), specs[1], boost::lexical_cast<uint16_t>(specs[2]), specs[3],specs[4]);
+	if (specs.size() < 5)
+		throw std::runtime_error("Some arguments are missing for --setip command");
+	ParseAddress(boost::lexical_cast<uint16_t>(specs[0]), specs[1], boost::lexical_cast<uint16_t>(specs[2]), specs[3], specs[4]);
+
 }
 
 ChangeIPMode::~ChangeIPMode()
@@ -31,6 +34,8 @@ ChangeIPMode::~ChangeIPMode()
 void ChangeIPMode::Run()
 {
 	bque.push(std::make_shared<IPMessage>(message));
+	boost::this_thread::sleep(boost::posix_time::millisec(1500));
+	exit(0);
 }
 
 uint8_t IPMessage::getSize()

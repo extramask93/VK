@@ -44,8 +44,9 @@ void FreeRunningMode::ResetMousePosition() const
 
 LRESULT CALLBACK LowLevelProcNoOp(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	auto state=GetAsyncKeyState(VK_F12);
-	if(state)
+	auto state=GetAsyncKeyState(VK_F9);
+	auto alt = GetAsyncKeyState(VK_MENU);
+	if(state&&alt)
 		PostQuitMessage(0);
 	return 0;
 }
@@ -70,8 +71,17 @@ LRESULT CALLBACK LowLevelMouseProcDual(int nCode, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
+BOOL ShouldTurnOff(int code, int last)
+{	
+	if (code == VK_F9 && (last==VK_LMENU||last==VK_RMENU))
+		return true;
+	else
+		return false;
+}
+
 FreeRunningMode::FreeRunningMode(BlockingQueue<std::shared_ptr<IMessage>> &que, boost::program_options::variables_map const& vm) :bque{que}, printer{ que }
 {
+	mouse.SetScale(vm["scale"].as<double>());
 	auto con1 = hidkbd.connect(std::bind(&Printer::printer, &printer, std::placeholders::_1));
 	auto con2 = mouse.connect(std::bind(&Printer::mousePrinter, &printer, std::placeholders::_1));
 	keyhookproc = LowLevelProcNoOp;
@@ -87,17 +97,17 @@ FreeRunningMode::FreeRunningMode(BlockingQueue<std::shared_ptr<IMessage>> &que, 
 	auto device = vm["device"].as<std::string>();
 	if (mode.find('d')!=std::string::npos)
 	{
-		if (mode.find('m') != std::string::npos)
+		if (device.find('m') != std::string::npos)
 			mousehookproc = &LowLevelMouseProcDual;
-		if (mode.find('k') != std::string::npos)
+		if (device.find('k') != std::string::npos)
 			keyhookproc = &LowLevelKeyboardProcDual;
 	}
 	else if (mode.find('s') != std::string::npos) {
-		if (mode.find('m') != std::string::npos)
+		if (device.find('m') != std::string::npos)
 		{
 			mousehookproc = &LowLevelMouseProc;
 		}
-		if (mode.find('k') != std::string::npos)
+		if (device.find('k') != std::string::npos)
 		{
 			keyhookproc = &LowLevelKeyboardProc;
 		}
@@ -122,19 +132,21 @@ LRESULT CALLBACK LowLevelKeyboardProcDual(int nCode, WPARAM wParam, LPARAM lPara
 {
 	BOOL fEatKeystroke = FALSE;
 	PKBDLLHOOKSTRUCT p = reinterpret_cast<PKBDLLHOOKSTRUCT>(lParam);
+	static int last;
 	if (nCode == HC_ACTION)
 	{
 		if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)
 		{
-			if (p->vkCode == VK_F12) {
+			if (ShouldTurnOff(p->vkCode,last)) {
 				PostQuitMessage(0);
 			}
 			else
 				keyboard.push(p->vkCode);
+			last = p->vkCode;
 		}
 		if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)
 		{
-			if (p->vkCode == VK_F12) {
+			if (ShouldTurnOff(p->vkCode,last)) {
 				PostQuitMessage(0);
 			}
 			else
@@ -171,19 +183,21 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	BOOL fEatKeystroke = FALSE;
 	PKBDLLHOOKSTRUCT p = reinterpret_cast<PKBDLLHOOKSTRUCT>(lParam);
+	static int last;
 	if (nCode == HC_ACTION)
 	{
 		if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)
 		{
-			if (p->vkCode == VK_F12) {
+			if (ShouldTurnOff(p->vkCode,last)) {
 				PostQuitMessage(0);
 			}
 			else
 			keyboard.push(p->vkCode);
+			last = p->vkCode;
 		}
 		if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)
 		{
-			if (p->vkCode == VK_F12) {
+			if (ShouldTurnOff(p->vkCode,last)) {
 				PostQuitMessage(0);
 			}
 			else

@@ -10,17 +10,18 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 	std::ifstream configFile{ "config.ini",std::ifstream::in };
 	po::options_description configFileOptions("Allowed options");
 	configFileOptions.add_options()
+		("verbose", "Print logs")
+		("ip", po::value<std::string>(), "specify target ip address")
+		("setip", po::value<std::string>(), "set static ip for the target")
 		("help,h", "Produce help message")
 		("version,v", "Prints version number")
-		("verbose","Print logs")
 		("macro,i", po::value<std::string>(), "run given script")
-		("setip",po::value<std::string>(),"set static ip for the target")
 		("record,r", po::value<std::string>(), "record")
-		("device,d",po::value<std::string>(),"device to capture: m - mosue, k- keyboard")
+		("device,d",po::value<std::string>()->default_value("mk"),"device to capture: m - mosue, k- keyboard")
 		("free,f","Run in free mode")
-		("mode,m",po::value<std::string>(),"mode to run in: s - singular(mapped only to remote) or d -dual(mapped to remote and host)")
-		("ip", po::value<std::string>(), "specify target ip address")
-		("port", po::value<std::string>(), "specify target ip address")
+		("mode,m",po::value<std::string>()->default_value("s"),"mode to run in: s - singular(mapped only to remote) or d -dual(mapped to remote and host)")
+		("port,p", po::value<std::string>(), "specify target listening port")
+		("scale,s",po::value<double>()->default_value(1.0),"mosue scaling factor(default 1)")
 		;
 	po::variables_map vm;
 	auto a = *argv;
@@ -40,7 +41,6 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 		conflicting_options(vm, "setip", "macro");
 		conflicting_options(vm, "free", "setip");
 		conflicting_options(vm, "setip", "record");
-		conflicting_options(vm, "setip", "device");
 		conflicting_options(vm, "macro", "device");
 		option_dependency(vm, "mode", "ip");
 		option_dependency(vm, "free", "ip");
@@ -52,20 +52,21 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 		cout << ex.what() << endl;
 		exit(1);
 	}
-	if (vm.count("help")) {
+	if (vm.count("help") || argc==1) {
 		cout << "Usage: \n";
 		cout << "VirtualKeyboard -h | --help\n" <<
 			"VirtualKeyboard --version\n" <<
 			"VirtualKeyboard --ip <board-ip> --port <board-port> (--macro | -i) <macro-file-name>\n" <<
-			"VirtualKeyboard --ip <board-ip> --port <board-port> (--free | -f) -d <k|m> -m <s|d\n>" <<
-			"VirtualKeyboard --ip <board-ip> --port <board-port> (--record | -r) <output-file-name> -d <k|m> -m <s|d>\n"<<
-			"VirtualKeyboard --ip <board-ip> --port <board-port> --setip <0,new-ip-address,new-port,new-mask,new-gateway>\n";
+			"VirtualKeyboard --ip <board-ip> --port <board-port> (--free | -f) [-d <k|m>] [-m <s|d>]\n" <<
+			"VirtualKeyboard --ip <board-ip> --port <board-port> (--record | -r) <output-file-name> [-d <k|m> ] [-m <s|d>]\n"<<
+			"VirtualKeyboard --ip <board-ip> --port <board-port> --setip <0,new-ip-address,new-port,new-mask,new-gateway>\n\n";
 		cout << configFileOptions << "\n";
+		cout << "Default config file: config.ini";
 		exit(0);
 	}
 	if (vm.count("version"))
 	{
-		cout << "v.1.0\n" << endl;
+		cout << "v.1.0\n";
 		exit(0);
 	}
 	return vm;

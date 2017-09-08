@@ -66,7 +66,6 @@ void Mouse::updatePosition(int x, int y)
 		wasProgrammaticallyChanged = true;
 		SetCursorPos(screenWidth / 2, screenHeight / 2);
 	}//xcnt--;*/
-
 	if (x < 0)
 		x = 0;
 	if (y < 0)
@@ -83,6 +82,9 @@ void Mouse::updatePosition(int x, int y)
 	report.Y = ceil((currentY-prevY));
 	if (report.X == 0 && report.Y == 0)
 		return;
+
+	report.X = report.X*scale < -127 ? -127 : report.X*scale;
+	report.Y = report.Y*scale > 127 ? 127 : report.Y*scale;
 	reportChanged(report);
 	reportChanged2(report,"mouseMove");
 }
