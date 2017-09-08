@@ -1,0 +1,4 @@
+[LONG]
+keyboardPush KEY_LWIN
+delayS 1000
+keyboardReleaseAll 0

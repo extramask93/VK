@@ -12,6 +12,7 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 	configFileOptions.add_options()
 		("verbose", "Print logs")
 		("ip", po::value<std::string>(), "specify target ip address")
+		("port,p", po::value<std::string>(), "specify target listening port")
 		("setip", po::value<std::string>(), "set static ip for the target")
 		("help,h", "Produce help message")
 		("version,v", "Prints version number")
@@ -20,7 +21,6 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 		("device,d",po::value<std::string>()->default_value("mk"),"device to capture: m - mosue, k- keyboard")
 		("free,f","Run in free mode")
 		("mode,m",po::value<std::string>()->default_value("s"),"mode to run in: s - singular(mapped only to remote) or d -dual(mapped to remote and host)")
-		("port,p", po::value<std::string>(), "specify target listening port")
 		("scale,s",po::value<double>()->default_value(1.0),"mosue scaling factor(default 1)")
 		;
 	po::variables_map vm;
@@ -66,7 +66,7 @@ po::variables_map CMDArgsParser::parseCommandLineArguments(int argc, char *argv[
 	}
 	if (vm.count("version"))
 	{
-		cout << "v.1.0\n";
+		cout << "v.1.3.0\n";
 		exit(0);
 	}
 	return vm;

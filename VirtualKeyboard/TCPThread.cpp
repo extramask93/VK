@@ -77,11 +77,17 @@ void TCPThread::operator()()
 			handleResponse(2);
 		}
 	}
+	catch (boost::thread_interrupted &ex)
+	{
+		if (socket->is_open())
+			socket->close();
+		return;
+	}
 	catch(std::exception const &ex)
 	{
 		setState(State::disconnected);
 		std::cerr << ex.what() << std::endl;
-		std::cout << "asd";
+		std::cout << "Disconnected.";
 		exit(1);
 	}
 	catch(...)

@@ -67,4 +67,3 @@ private:
 	std::string port;
 	std::shared_ptr<tcp::socket> socket;
 };
-
